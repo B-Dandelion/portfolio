@@ -30,6 +30,20 @@
       }
     }
   </script>
+  <style>
+    .phone-mockup {
+      border: 5px solid #1e293b;
+      border-radius: 1.75rem;
+      overflow: hidden;
+      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+      background-color: #020617;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .phone-mockup:hover {
+      transform: translateY(-4px);
+      border-color: #10b981;
+    }
+  </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white">
 
@@ -151,8 +165,8 @@
       </div>
 
       <!-- Project 1: Forestring -->
-      <article class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 relative overflow-hidden">
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <article class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 relative overflow-hidden space-y-10">
+        <div class="flex flex-wrap items-center justify-between gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-full">
               Production Case Study · 1인 개발
@@ -168,8 +182,64 @@
           </div>
         </div>
 
+        <!-- 📸 Visual Gallery 1: Student Flow -->
+        <div class="pt-2">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
+              수강생 셀프서비스 플로우: [조회] → [취소 및 보강권 반환] → [실시간 재예약]
+            </h4>
+            <span class="text-xs text-slate-400">학생 전용 UX</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/10 .png" alt="수강생 월간 일정 확인" class="w-full object-cover">
+              </div>
+              <p class="text-xs text-slate-400 text-center font-medium">1. 일정 확인 및 상태 조회</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/7 .png" alt="수업 상세 및 취소" class="w-full object-cover">
+              </div>
+              <p class="text-xs text-slate-400 text-center font-medium">2. 수업 취소 (보강 권리 생성)</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/8 .png" alt="수업권 기반 재예약" class="w-full object-cover">
+              </div>
+              <p class="text-xs text-slate-400 text-center font-medium">3. 가용 슬롯 실시간 재예약</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📸 Visual Gallery 1-2: Entitlement Ledger Tracking -->
+        <div class="pt-2">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="receipt" class="w-4 h-4 text-teal-400"></i>
+              수업권 원장(Ledger) 추적: [정규 수업권 보유 상태] ➔ [취소 후 보강권 반환 및 1차 취소 이력]
+            </h4>
+            <span class="text-xs text-slate-400">상태 전이 검증</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/11 .png" alt="수업권 보유 상태 마이페이지" class="w-full object-cover">
+              </div>
+              <p class="text-xs text-slate-400 text-center font-medium">취소 전: 예약 4개 · 잔여 취소 2회</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/12 .png" alt="취소 후 수업권 반환 및 이력 마이페이지" class="w-full object-cover">
+              </div>
+              <p class="text-xs text-slate-400 text-center font-medium">취소 후: 예약 가능 수업권 1개 생성 · 1차 취소 audit</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Problem / Solution / Metrics -->
-        <div class="grid md:grid-cols-3 gap-6 my-8">
+        <div class="grid md:grid-cols-3 gap-6">
           <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
             <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i> 직면한 문제
@@ -198,6 +268,80 @@
           </div>
         </div>
 
+        <!-- 📸 Visual Gallery 2: Operations & Admin Flow -->
+        <div class="pt-2">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
+              운영자 / 교사 복합 권한 도메인 UI
+            </h4>
+            <span class="text-xs text-slate-400">지점장 / 교사 / 마스터 UX</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/6 .png" alt="교사 주간 타임슬롯 그리드" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">교사용 스케줄 타임슬롯</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/14 .png" alt="교사 일별 상세 및 개인 일정" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">일정 및 개인 일정 관리</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/13 .png" alt="교사 담당 수업 가용 현황" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">담당 수업 가용 상태</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/15 .png" alt="전체 관리자 메뉴 드로어" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">마스터 권한 네비게이션</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📸 Visual Gallery 3: Academic Term & Safe Operations -->
+        <div class="pt-2">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="calendar-range" class="w-4 h-4 text-emerald-400"></i>
+              학기 경계 제어 및 안전한 데이터 처리 이력
+            </h4>
+            <span class="text-xs text-slate-400">학기 및 안전 운영 가드레일</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/1 .png" alt="학기 기본 설정 및 휴원 관리" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">학기 설정 및 휴원 관리</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/4 .png" alt="수강생 상세 및 다음 학기 연결" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">수강생 및 다음 학기 연결</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/3 .png" alt="다음 학기 수강 형태 선택" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">다음 학기 수강 형태 전환</p>
+            </div>
+            <div class="space-y-2">
+              <div class="phone-mockup">
+                <img src="assets/5 .png" alt="취소 및 처리 이력 Ledger" class="w-full object-cover">
+              </div>
+              <p class="text-[11px] text-slate-400 text-center">불변 처리 이력 Audit</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Architecture Callout -->
         <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800">
           <h4 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
@@ -217,7 +361,7 @@
         </div>
 
         <!-- Incident Recovery Loop -->
-        <div class="mt-6">
+        <div>
           <h4 class="text-sm font-semibold text-slate-300 mb-3 flex items-center gap-2">
             <i data-lucide="history" class="w-4 h-4 text-teal-400"></i> 실제 장애 대응 및 복구 사례 (Incident Recovery)
           </h4>
