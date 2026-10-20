@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfdfd"><meta name="description" content="1인 개발로 앱을 출시하고 2년간 운영하며 배운 시스템 설계, 데이터베이스 이관, 사용자 문제 이해에 관한 회고."><title>1인 앱 개발·출시 후, 2년간 운영하며 배운 것 | 진민경</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="site-header"><div class="wrap inner"><a class="wordmark" href="./">minkyoung<b>.</b></a><nav class="main-nav"><a href="./#work">Projects</a><a href="writing.html" aria-current="page">Writing</a><a href="./#about">About</a><a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
+<main>
+<header class="page-hero wrap"><a class="backlink" href="writing.html">← Writing</a><span class="overline" style="display:block;margin-top:35px">REFLECTION · 2026.10.20 · 포레스트링</span>
+<h1>1인 앱 개발·출시 후,<br>2년간 운영하며 배운 것</h1>
+<p>처음에는 기능이 동작하면 개발이 끝났다고 생각했습니다. 실제 사용자가 있는 앱을 계속 운영한 뒤, 그 생각은 달라졌습니다.</p>
+<div class="case-meta"><span><strong>주제</strong>1인 개발 · 유지 보수 · 성장 회고</span><span><strong>프로젝트</strong>포레스트링</span><span><strong>읽을거리</strong>실서비스 운영 경험</span></div>
+</header>
+<div class="wrap article-layout">
+<article class="article-content">
+<p class="notice">이 글은 <a style="text-decoration:underline" href="https://velog.io/@b_dandelion/1인-앱-개발-출시-후-2년간-운영-후기" target="_blank" rel="noopener noreferrer">Velog에 공개한 회고</a>와 작성 원고를 바탕으로 포트폴리오 웹사이트에 맞게 재구성한 버전입니다.</p>
+<section id="start">
+<h2>처음 시작할 때</h2>
+<p>2024년, 바이올린 학원에서 수업 일정을 모바일로 관리할 수 있는 앱을 만들어 달라는 요청을 받았습니다. 학원은 수강생이 고정된 시간에만 수업을 듣는 방식이 아니라, 상황에 따라 원하는 시간대에 예약하고 취소하기도 했습니다. 선생님과 수강생 모두가 이용하는 앱이 필요했습니다.</p>
+<p>당시 저는 실제 앱을 개발해 스토어에 배포한 경험이 없었습니다. iOS와 Android를 함께 지원해야 했기에 Flutter로 개발하기로 했고, 선생님·관리자와 수강생의 역할을 나누어 최소한의 예약과 관리 기능부터 구현했습니다.</p>
+<p>2024년 10월 22일, 첫 버전을 출시했습니다. 로그인, 수업과 사용자 조회·관리, 예약·취소 등 초기 기능이 동작했습니다. 하지만 출시는 개발의 마지막 단계가 아니었습니다.</p>
+</section>
+<section id="operating">
+<h2>실제 운영에서 드러나는 문제</h2>
+<p>초기 앱에서 반복적으로 마주한 문제 가운데 하나는 수업이 생성되지 않거나, 휴원 기간인데도 수업이 생성되는 오류였습니다. 특정 기간을 휴원으로 지정하면 그 기간에 해당하는 수업은 건너뛰고 다음 차례의 수업을 생성해야 했습니다. 화면에서 보기에는 단순한 달력이지만, 날짜 경계와 휴원 규칙을 조금만 잘못 계산해도 실제 수업 일정이 달라졌습니다.</p>
+<p>문제를 추적하며 사용자에게 표시하는 시간은 KST 기준이지만 DB와의 시간 저장·조회 과정에는 UTC가 개입한다는 점을 다시 살폈습니다. <strong>UTC로 저장된 시각을 읽어 날짜를 계산할 때 KST로 해석하지 않으면</strong> 사용자가 의도한 날짜와 계산에 사용된 날짜가 달라질 수 있었습니다.</p>
+<div class="architecture"><div class="arch-row"><span class="node">사용자 선택 · KST</span><span class="arrow">→</span><span class="node ice">DB의 UTC 시각</span><span class="arrow">→</span><span class="node">KST 날짜로 해석</span><span class="arrow">→</span><span class="node">휴원 규칙 적용</span></div><p>핵심은 시차 자체가 오류라는 뜻이 아니라, 저장된 시각을 다시 해석하고 날짜를 비교하는 기준을 일치시키는 데 있습니다.</p></div>
+<p>처음에는 Flutter 코드에 흩어져 있던 날짜 처리 로직을 점검하고 변환 기준을 맞추었습니다. 그러나 데이터 처리 규칙이 앱의 여러 위치에 계속 추가되는 방식에는 한계가 있었습니다. 새로운 화면이나 자동화 로직이 생길 때마다 같은 규칙을 중복해서 구현한다면, 언젠가 다시 서로 다른 결과가 나올 수 있기 때문입니다.</p>
+</section>
+<section id="migration">
+<h2>문제를 수정하는 것과 구조를 바로잡는 것</h2>
+<p>예약 관련 오류를 추적하다 보니 데이터베이스의 관계를 이해하고 필요한 기록을 찾는 과정도 쉽지 않았습니다. 초기 Firebase Firestore의 중첩 문서 구조는 MVP를 만드는 동안에는 편리했지만, 수강생·수업·선생님·수업권 같은 관계를 교차해서 조회하고 검증해야 하는 운영 단계에서는 부담이 커졌습니다.</p>
+<p>이 경험을 거쳐 Supabase의 PostgreSQL 기반 구조로 이전했습니다. 데이터 사이의 관계를 명시하고, SQL로 필요한 정보를 확인하며, RLS와 RPC를 통해 역할별 접근과 변경 규칙을 서버 측에서 검증하는 쪽으로 설계를 바꾸었습니다.</p>
+<p>마이그레이션은 데이터베이스의 이름만 바꾸는 일이 아니었습니다. 기존 앱에서 일어나던 여러 상태 변화를 정리하고, 어느 단계에서 무엇을 변경해도 되는지 다시 정의해야 했습니다.</p>
+<div class="insight"><strong>Make it work → Make it right.</strong><br>처음에는 화면에 기능이 나타나는 것이 목표였다면, 운영을 겪은 뒤에는 시스템 전체가 지켜야 하는 상태와 규칙을 먼저 생각하게 되었습니다.</div>
+</section>
+<section id="users">
+<h2>사용자의 요청 뒤에 있는 문제</h2>
+<p>사용자가 “수업을 더 쉽게 수정하고 싶다”고 요청하면, 가장 빠른 방법은 수정 화면을 바꾸거나 버튼을 추가하는 것입니다. 그러나 실제로 수업을 자주 수정해야 하는 이유는 무엇인지 물어야 할 때가 있습니다.</p>
+<p>어떤 수강생은 매주 같은 시간에 레슨을 듣지만, 어떤 수강생에게는 고정된 시간표가 맞지 않습니다. 이들에게 일단 정규 일정을 부여하고 매번 취소와 보강을 반복하게 만든다면, 기능을 더 편리하게 만드는 것만으로는 사용자의 불편을 없애지 못합니다.</p>
+<p>그래서 고정된 수업 시간이 없어도 수업권을 기반으로 원하는 시간에 예약할 수 있는 형태를 데이터 모델에 반영했습니다. “수정 기능”의 문제가 아니라 <strong>유동적인 일정을 지원하지 못하는 운영 방식</strong>의 문제로 다시 정의한 것입니다.</p>
+</section>
+<section id="solo">
+<h2>왜 1인 개발이 성장의 계기가 되었을까</h2>
+<p>기술적인 시행착오와 사용자 요구를 분석하는 경험은 팀 프로젝트에서도 배울 수 있습니다. 그렇다면 이 프로젝트가 특별했던 이유는 무엇일까요?</p>
+<p>혼자 개발하며 요구사항을 이해하고 기술을 선택하는 단계부터, 오류를 분석하고 데이터 모델을 바꾸며 새 버전을 배포하는 단계까지 이어서 맡았습니다. 한 부분의 결정을 다른 부분의 담당자에게 넘길 수 없었고, 이전에 제가 내린 기술적 판단이 운영 과정에서 어떤 결과를 낳는지 직접 확인해야 했습니다.</p>
+<p>물론 모든 역할을 혼자 감당하는 것이 늘 효율적이거나 좋은 방식은 아닙니다. 다만 작은 규모의 실제 서비스에서 개발의 전 과정을 경험할 수 있었고, 하나의 요구사항이 앱 화면, DB, 서버 로직, 사용자 운영에 어떤 영향을 주는지 연결해서 생각하게 됐습니다.</p>
+</section>
+<section id="end">
+<h2>돌아보며</h2>
+<p>관련 경험이 전무한 대학생이던 제가 앱을 출시하고, 2년 동안 사용자와 운영 데이터를 마주하며 유지 보수했습니다. 처음부터 좋은 설계를 할 수 있었던 것은 아닙니다. 잘못된 결정을 수정해야 했고, 기능을 추가하는 것보다 기존 규칙을 다시 정리하는 데 더 많은 시간이 걸릴 때도 있었습니다.</p>
+<p>그러나 그 과정을 통해 단순한 구현을 넘어 서비스 전체를 이해하고 책임지는 개발 관점을 배웠습니다. 앞으로도 무엇을 만들었는지뿐 아니라 왜 그렇게 만들었고 이후에 무엇을 바꾸었는지 기록하려고 합니다.</p>
+<div class="case-links"><a href="forestring.html">포레스트링 프로젝트 상세 ↗</a><a href="https://velog.io/@b_dandelion/1인-앱-개발-출시-후-2년간-운영-후기" target="_blank" rel="noopener noreferrer">Velog 원문 ↗</a></div>
+</section>
+</article>
+<aside class="article-aside" aria-label="문서 목차"><strong>ON THIS PAGE</strong><a href="#start">처음 시작할 때</a><a href="#operating">운영에서 드러난 문제</a><a href="#migration">구조를 바로잡는 것</a><a href="#users">사용자의 문제</a><a href="#solo">1인 개발의 의미</a><a href="#end">돌아보며</a></aside>
+</div>
+</main><footer class="site-footer"><div class="wrap"><span>© 2026 Jin Minkyoung</span><a href="writing.html">← More writing</a></div></footer>
+</body></html>

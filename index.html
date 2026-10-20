@@ -1,491 +1,148 @@
-<!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<!doctype html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>진민경 | Mobile Software Engineer</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#ecfdf5',
-              500: '#10b981',
-              600: '#059669',
-              900: '#064e3b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    .phone-mockup {
-      border: 5px solid #1e293b;
-      border-radius: 1.75rem;
-      overflow: hidden;
-      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
-      background-color: #020617;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .phone-mockup:hover {
-      transform: translateY(-4px);
-      border-color: #10b981;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fcfdfd">
+  <meta name="description" content="진민경의 앱·웹 개발 포트폴리오. Flutter 모바일 서비스와 Next.js 웹 서비스를 개발하고 운영한 경험을 기록합니다.">
+  <title>진민경 | App & Web Developer</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white">
-
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#" class="font-bold text-lg tracking-tight text-white flex items-center gap-2">
-        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-        Minkyung Jin
-      </a>
-      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
-        <a href="#about" class="hover:text-emerald-400 transition-colors">소개</a>
-        <a href="#projects" class="hover:text-emerald-400 transition-colors">프로젝트</a>
-        <a href="#experience" class="hover:text-emerald-400 transition-colors">경력</a>
-        <a href="https://github.com/B-Dandelion" target="_blank" class="flex items-center gap-1.5 text-slate-200 hover:text-emerald-400 transition-colors">
-          <i data-lucide="github" class="w-4 h-4"></i> GitHub
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="pt-32 pb-20 border-b border-slate-800/80">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-6">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Production Ownership & Mobile Engineering
-      </div>
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-        화면 구현을 넘어 <br class="hidden sm:inline" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">데이터 정합성과 운영 가드레일</span>까지 책임집니다.
-      </h1>
-      <p class="text-lg text-slate-400 max-w-2xl leading-relaxed mb-8">
-        실제 44명의 유저가 매일 사용하는 일정 서비스를 2년간 1인 개발·운영해 온 모바일 엔지니어 진민경입니다. 단순 클라이언트 개발을 넘어, 복잡한 비즈니스 규칙의 도메인 모델링과 장애 없는 안전한 운영 루프를 구축하는 데 집중합니다.
-      </p>
-
-      <div class="flex flex-wrap items-center gap-4 text-sm">
-        <a href="mailto:jinbabging@gmail.com" class="px-5 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20">
-          <i data-lucide="mail" class="w-4 h-4"></i> 커피챗 및 채용 문의
-        </a>
-        <a href="https://github.com/B-Dandelion" target="_blank" class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-medium flex items-center gap-2 transition-all">
-          <i data-lucide="external-link" class="w-4 h-4"></i> GitHub Repository
-        </a>
-      </div>
-
-      <!-- Quick Metrics Strip -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-12 border-t border-slate-800/60">
-        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-          <div class="text-2xl font-bold text-white tracking-tight">2+ Years</div>
-          <div class="text-xs text-slate-400 mt-1">포레스트링 실서비스 운영</div>
-        </div>
-        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-          <div class="text-2xl font-bold text-emerald-400 tracking-tight">3,059 건</div>
-          <div class="text-xs text-slate-400 mt-1">운영 DB 누적 수업 관리</div>
-        </div>
-        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-          <div class="text-2xl font-bold text-white tracking-tight">4 Roles / 21 RLS</div>
-          <div class="text-xs text-slate-400 mt-1">데이터베이스 권한 물리 분리</div>
-        </div>
-        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-          <div class="text-2xl font-bold text-teal-400 tracking-tight">82% 단축</div>
-          <div class="text-xs text-slate-400 mt-1">배달 로봇 미션 인터랙션 시간</div>
-        </div>
-      </div>
+<body>
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈">minkyoung<b>.</b></a>
+      <nav class="main-nav" aria-label="메인 탐색">
+        <a href="#work">Projects</a>
+        <a href="writing.html">Writing</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
     </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
-
-    <!-- About & Philosophy -->
-    <section id="about">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-          <i data-lucide="shield-check" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-white">엔지니어링 철학</h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-            <i data-lucide="layers" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-semibold text-white mb-2">클라이언트 밖의 구조 설계</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            UI 화면에만 비즈니스 로직을 가두지 않고, DB 레벨의 제약조건(FK, UNIQUE)과 서버 정책(RLS, RPC)으로 데이터 오염을 근본적으로 차단합니다.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-4">
-            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-semibold text-white mb-2">검증 가능한 안전한 복구 루프</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            운영 중 오류가 발생하면 실데이터를 즉시 건드리지 않고, 관찰 → 격리 → Dry-run 사전 검증 → 복구 → 사후 검증의 절차를 통해 시스템 신뢰성을 보장합니다.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4">
-            <i data-lucide="cpu" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-semibold text-white mb-2">하드웨어 및 시스템 통합</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            모바일 화면과 로봇(ROS2/ESP32), XR 디바이스(Meta Quest) 간의 통신 경계를 상태 머신(FSM) 및 API 규격으로 분리하여 통신 지연에 유연하게 대응합니다.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="space-y-16">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-          <i data-lucide="smartphone" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-white">핵심 프로젝트</h2>
-      </div>
-
-      <!-- Project 1: Forestring -->
-      <article class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 relative overflow-hidden space-y-10">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-full">
-              Production Case Study · 1인 개발
-            </span>
-            <h3 class="text-3xl font-extrabold text-white mt-3">포레스트링 (Forestring)</h3>
-            <p class="text-slate-400 text-sm mt-1">2년간 실제 운영하며 데이터와 구조로 완성한 학원 일정 관리 모바일 서비스</p>
-          </div>
-          <div class="flex flex-wrap gap-2 text-xs font-mono">
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Flutter</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Supabase</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">PostgreSQL</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">iOS & Android</span>
-          </div>
-        </div>
-
-        <!-- 📸 Visual Gallery 1: Student Flow -->
-        <div class="pt-2">
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-sm font-bold text-white flex items-center gap-2">
-              <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
-              수강생 셀프서비스 플로우: [조회] → [취소 및 보강권 반환] → [실시간 재예약]
-            </h4>
-            <span class="text-xs text-slate-400">학생 전용 UX</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/10 .png" alt="수강생 월간 일정 확인" class="w-full object-cover">
-              </div>
-              <p class="text-xs text-slate-400 text-center font-medium">1. 일정 확인 및 상태 조회</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/7 .png" alt="수업 상세 및 취소" class="w-full object-cover">
-              </div>
-              <p class="text-xs text-slate-400 text-center font-medium">2. 수업 취소 (보강 권리 생성)</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/8 .png" alt="수업권 기반 재예약" class="w-full object-cover">
-              </div>
-              <p class="text-xs text-slate-400 text-center font-medium">3. 가용 슬롯 실시간 재예약</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 📸 Visual Gallery 1-2: Entitlement Ledger Tracking -->
-        <div class="pt-2">
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-sm font-bold text-white flex items-center gap-2">
-              <i data-lucide="receipt" class="w-4 h-4 text-teal-400"></i>
-              수업권 원장(Ledger) 추적: [정규 수업권 보유 상태] ➔ [취소 후 보강권 반환 및 1차 취소 이력]
-            </h4>
-            <span class="text-xs text-slate-400">상태 전이 검증</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/11 .png" alt="수업권 보유 상태 마이페이지" class="w-full object-cover">
-              </div>
-              <p class="text-xs text-slate-400 text-center font-medium">취소 전: 예약 4개 · 잔여 취소 2회</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/12 .png" alt="취소 후 수업권 반환 및 이력 마이페이지" class="w-full object-cover">
-              </div>
-              <p class="text-xs text-slate-400 text-center font-medium">취소 후: 예약 가능 수업권 1개 생성 · 1차 취소 audit</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Problem / Solution / Metrics -->
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i> 직면한 문제
-            </div>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              기존 캘린더 라이브러리는 학기제, 휴원, 정규 슬롯, 당일 취소 시 보강권 생성 등의 비즈니스 룰을 수용하지 못해 <strong>일정 충돌 및 데이터 정합성 꼬임</strong>이 빈발했습니다.
-            </p>
-          </div>
-
-          <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i data-lucide="code-2" class="w-4 h-4 text-emerald-400"></i> 구조적 해결
-            </div>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              규칙(학기) → 슬롯(정규권) → 버전 → 수업 인스턴스 → <strong>수업권 원장(Ledger)의 5단계 도메인 분리</strong>. 취소/보강을 유한 상태 머신(FSM)과 불변 이벤트로 모델링했습니다.
-            </p>
-          </div>
-
-          <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i data-lucide="bar-chart-3" class="w-4 h-4 text-teal-400"></i> 실서비스 성과
-            </div>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              <strong>누적 수업 3,059건, 44개 활성 계정</strong>을 단 한 건의 데이터 유실 없이 안정적 운영. 21개 RLS 정책으로 4개 사용자 권한의 데이터 접근 범위를 물리 격리했습니다.
-            </p>
-          </div>
-        </div>
-
-        <!-- 📸 Visual Gallery 2: Operations & Admin Flow -->
-        <div class="pt-2">
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-sm font-bold text-white flex items-center gap-2">
-              <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
-              운영자 / 교사 복합 권한 도메인 UI
-            </h4>
-            <span class="text-xs text-slate-400">지점장 / 교사 / 마스터 UX</span>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/6 .png" alt="교사 주간 타임슬롯 그리드" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">교사용 스케줄 타임슬롯</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/14 .png" alt="교사 일별 상세 및 개인 일정" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">일정 및 개인 일정 관리</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/13 .png" alt="교사 담당 수업 가용 현황" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">담당 수업 가용 상태</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/15 .png" alt="전체 관리자 메뉴 드로어" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">마스터 권한 네비게이션</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 📸 Visual Gallery 3: Academic Term & Safe Operations -->
-        <div class="pt-2">
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-sm font-bold text-white flex items-center gap-2">
-              <i data-lucide="calendar-range" class="w-4 h-4 text-emerald-400"></i>
-              학기 경계 제어 및 안전한 데이터 처리 이력
-            </h4>
-            <span class="text-xs text-slate-400">학기 및 안전 운영 가드레일</span>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/1 .png" alt="학기 기본 설정 및 휴원 관리" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">학기 설정 및 휴원 관리</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/4 .png" alt="수강생 상세 및 다음 학기 연결" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">수강생 및 다음 학기 연결</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/3 .png" alt="다음 학기 수강 형태 선택" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">다음 학기 수강 형태 전환</p>
-            </div>
-            <div class="space-y-2">
-              <div class="phone-mockup">
-                <img src="assets/5 .png" alt="취소 및 처리 이력 Ledger" class="w-full object-cover">
-              </div>
-              <p class="text-[11px] text-slate-400 text-center">불변 처리 이력 Audit</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Architecture Callout -->
-        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800">
-          <h4 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-            <i data-lucide="git-merge" class="w-4 h-4 text-emerald-400"></i>
-            Firebase에서 PostgreSQL로의 아키텍처 재설계
-          </h4>
-          <div class="grid sm:grid-cols-2 gap-4 text-xs leading-relaxed text-slate-400">
-            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span class="text-rose-400 font-bold block mb-1">Before: Firebase Firestore</span>
-              클라이언트에 흩어진 예약 생성 로직, 외래키/무결성 제약 부재, 복잡해지는 권한 규칙 관리의 한계.
-            </div>
-            <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/60">
-              <span class="text-emerald-400 font-bold block mb-1">After: PostgreSQL (Supabase)</span>
-              FK/UNIQUE/CHECK 제약으로 잘못된 상태 원천 차단, RPC를 통한 서버 중심 트랜잭션, RLS로 보안 가드레일 확립.
-            </div>
-          </div>
-        </div>
-
-        <!-- Incident Recovery Loop -->
+  <main>
+    <section class="intro wrap" aria-labelledby="headline">
+      <div class="intro-grid">
         <div>
-          <h4 class="text-sm font-semibold text-slate-300 mb-3 flex items-center gap-2">
-            <i data-lucide="history" class="w-4 h-4 text-teal-400"></i> 실제 장애 대응 및 복구 사례 (Incident Recovery)
-          </h4>
-          <div class="grid sm:grid-cols-3 gap-3 text-xs text-slate-400 font-mono">
-            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-              <span class="text-white font-semibold block mb-0.5">과거 수업 오생성 26건</span>
-              run_id/cutoff로 격리 후 정상 미래 수업 보존한 채 선택적 롤백
-            </div>
-            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-              <span class="text-white font-semibold block mb-0.5">누락 수업 56건 복구</span>
-              기대치(183건)와 실데이터 Diff 계산 후 누락분만 안전 audit 복구
-            </div>
-            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-              <span class="text-white font-semibold block mb-0.5">휴원 충돌 11건 재배치</span>
-              휴원 구간 내 수업 감지 후 제약조건 재검증을 거쳐 일정 재배치
-            </div>
+          <span class="overline">JIN MINKYOUNG — APP / WEB DEVELOPMENT</span>
+          <h1 id="headline">만드는 것에서<br><em>운영하는 것</em>까지.</h1>
+          <p class="lead">Flutter 앱과 Next.js 웹 서비스를 개발합니다. 기능을 구현하는 데서 끝내지 않고, 실제 사용 과정에서 발견한 문제를 데이터와 구조로 해결해 왔습니다.</p>
+          <div class="intro-meta">
+            <span>세종대학교 · 인공지능학과</span>
+            <span>2027.02 졸업 예정</span>
+            <a href="mailto:jinbabging@gmail.com">Email ↗</a>
           </div>
         </div>
-      </article>
-
-      <!-- Project 2: Autonomous Delivery -->
-      <article class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 relative">
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-teal-400 bg-teal-950/70 border border-teal-500/30 px-3 py-1 rounded-full">
-              S.M.A.R.T Tournament 장려상 수상
-            </span>
-            <h3 class="text-2xl font-bold text-white mt-3">Last-Mile 자율주행 배달 로봇 클라이언트 & 미션 제어</h3>
-            <p class="text-slate-400 text-sm mt-1">Flutter 모바일 앱과 FastAPI 미션 서버를 통한 하드웨어 제어 경계 분리</p>
-          </div>
-          <div class="flex flex-wrap gap-2 text-xs font-mono">
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Flutter</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">FastAPI</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">ESP32</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">ROS2</span>
-          </div>
-        </div>
-
-        <div class="space-y-3 text-sm text-slate-300 leading-relaxed mb-6">
-          <p>
-            • <strong>Mission State Architecture:</strong> 앱의 입력을 로봇에 직접 전달하지 않고 중간 FastAPI 서버를 배치하여 <em>배달 요청 → 배차 → 적재함 제어 → 목적지 이동 → 수령 인증</em>의 End-to-End 상태 머신을 구축했습니다.
-          </p>
-          <p>
-            • <strong>현장 중심 UX:</strong> 기사용 앱(적재 및 호출)과 주민용 앱(도착 알림 및 언락)의 듀얼 인터페이스를 설계하여 배달원의 직접 작업 시간을 <strong>170초에서 31초로 약 82% 단축</strong>시켰습니다.
-          </p>
-        </div>
-      </article>
-
-      <!-- Project 3: VR AI Guide -->
-      <article class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800">
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-          <div>
-            <h3 class="text-xl font-bold text-white">Interactive VR AI Guide</h3>
-            <p class="text-slate-400 text-sm">Meta Quest 기반 디바이스-서버 실시간 오디오 처리 파이프라인</p>
-          </div>
-          <div class="flex flex-wrap gap-2 text-xs font-mono">
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Unity (C#)</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">FastAPI</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">STT / LLM / TTS</span>
-          </div>
-        </div>
-        <p class="text-sm text-slate-300 leading-relaxed">
-          마이크 음성 캡처부터 WAV 업로드, STT 변환, LLM 추론, TTS 생성 및 MP3 스트리밍까지의 전 과정을 비동기 파이프라인으로 구축했습니다. 하드웨어 환경에서의 네트워크 지연 및 재생 예외 처리를 상태 기반으로 핸들링했습니다.
-        </p>
-      </article>
-    </section>
-
-    <!-- Experience & Education -->
-    <section id="experience" class="grid md:grid-cols-2 gap-12 pt-8 border-t border-slate-800/80">
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-            <i data-lucide="briefcase" class="w-5 h-5"></i>
-          </div>
-          <h2 class="text-xl font-bold text-white">실무 경력</h2>
-        </div>
-        <div class="border-l-2 border-slate-800 pl-4 space-y-6">
-          <div>
-            <span class="text-xs font-mono text-emerald-400">2025.09 — 2026.02</span>
-            <h3 class="text-base font-bold text-white mt-1">아리아리아이씨티(주)</h3>
-            <p class="text-xs text-slate-400 mb-2">Web & Data Developer (계약직)</p>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Next.js + Supabase 기반 공식 콘텐츠 아카이브 서비스 구축 및 679건의 대용량 자료/파일 마이그레이션 스크립트 작성. Dry-run 절차를 도입하여 프로덕션 업데이트 시 데이터 무결성을 보장했습니다.
-            </p>
-          </div>
-        </div>
+        <aside class="side-note" aria-label="개발 방향">
+          <strong>WHAT I FOCUS ON</strong>
+          <span>01 — 사용자 흐름을 이해하는 개발</span>
+          <span>02 — 데이터 정합성을 고려한 설계</span>
+          <span>03 — 배포 이후의 유지 보수와 개선</span>
+        </aside>
       </div>
-
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-          </div>
-          <h2 class="text-xl font-bold text-white">학력 및 수상</h2>
+    </section>
+    <section id="work" class="work-section wrap" aria-labelledby="work-title">
+      <div class="section-heading"><h2 id="work-title">Selected work</h2><span class="count">주요 프로젝트 / 01—02</span></div>
+      <article class="feature">
+        <div class="feature-copy">
+          <span class="feature-num">01 / MOBILE APPLICATION · 1인 개발 · 실서비스</span>
+          <h3>포레스트링</h3>
+          <p class="tagline">바이올린 학원의 복잡한 수업·예약 운영을 하나의 서비스로 연결했습니다.</p>
+          <p>선생님·관리자·수강생이 서로 다른 화면에서 동일한 수업 정보를 사용합니다. 2024년 첫 출시 이후 실제 운영에서 발견한 일정 누락과 권한 문제를 추적했고, Firebase 기반 초기 구조를 PostgreSQL 중심으로 재설계했습니다.</p>
+          <p class="small-stack">Flutter / Dart / Supabase / PostgreSQL / RLS / RPC</p>
+          <a class="inline-link" href="forestring.html">프로젝트 상세 보기 <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="border-l-2 border-slate-800 pl-4 space-y-6">
-          <div>
-            <span class="text-xs font-mono text-slate-400">2022.03 — 2027.02 (졸업예정)</span>
-            <h3 class="text-base font-bold text-white mt-1">세종대학교 인공지능학과</h3>
-            <p class="text-xs text-slate-400">학점 3.8 / 4.5 · 알고리즘 및 실습(A+), 파이썬 기반 딥러닝(A+)</p>
+        <div class="feature-visual visual-forestring" role="img" aria-label="Teacher와 Student 앱이 단일 PostgreSQL 기반 수업 데이터를 공유하는 구조 다이어그램">
+          <span class="visual-label">SYSTEM OVERVIEW / NOT AN APP SCREENSHOT</span>
+          <div class="system-board">
+            <div class="sys-title">One source of truth</div>
+            <div class="sys-top">
+              <div class="sys-tile">Teacher / Manager<small>일정 운영 · 수강생 관리</small></div>
+              <div class="sys-tile">Student<small>조회 · 취소 · 보강 예약</small></div>
+            </div>
+            <div class="sys-connector"></div>
+            <div class="sys-db">PostgreSQL + RPC / RLS<small>공유 도메인 · 상태 검증 · 접근 제어</small></div>
           </div>
-          <div>
-            <span class="text-xs font-mono text-teal-400">2026.07 · 2024.12</span>
-            <h3 class="text-base font-bold text-white mt-1">공모전 및 대회 수상</h3>
-            <p class="text-xs text-slate-300 mt-1">• S.M.A.R.T Tournament 장려상 (자율주행 배달 로봇)</p>
-            <p class="text-xs text-slate-300 mt-0.5">• 한국지능정보사회진흥원(NIA) 데이터 크리에이터 캠프 장려상 (패션 AI)</p>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-copy">
+          <span class="feature-num">02 / WEB SERVICE · 1인 개발 · 배포</span>
+          <h3>INC 홈페이지</h3>
+          <p class="tagline">기관의 소식과 발간물, 행사 자료를 안내하고 관리하는 INC 홈페이지를 구축했습니다.</p>
+          <p>Next.js 기반의 자료실과 관리 도구를 만들고, PostgreSQL에는 메타데이터를, Cloudflare R2에는 원본 파일을 저장하도록 분리했습니다. 업로드 실패 시 객체를 정리하는 로직과 기존 자료의 이관 스크립트도 직접 구현했습니다.</p>
+          <p class="small-stack">Next.js / TypeScript / Supabase / Cloudflare R2 / Vercel</p>
+          <a class="inline-link" href="inc.html">프로젝트 상세 보기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="feature-visual visual-inc" role="img" aria-label="INC 홈페이지의 자료 목록을 나타내는 추상화된 구조 그림">
+          <span class="visual-label">ARCHIVE SYSTEM / STRUCTURE STUDY</span>
+          <div class="window" aria-hidden="true">
+            <div class="window-head"><span></span><span></span><span></span></div>
+            <div class="window-screen">
+              <div class="window-title">INC / Homepage</div>
+              <div class="window-row"><i></i></div>
+              <div class="window-row"><i></i></div>
+              <div class="window-row"><i></i></div>
+              <div class="window-row"><i></i></div>
+              <div class="window-foot"><span></span><span></span></div>
+            </div>
           </div>
+        </div>
+      </article>
+      <div class="compact-head">
+        <h3>Additional projects</h3>
+        <p>프로젝트별 역할과 결과를 간결하게 정리했습니다.</p>
+      </div>
+      <div class="project-list" aria-label="추가 앱 프로젝트">
+        <div class="project-row">
+          <span class="type">FLUTTER / AI</span>
+          <div><h4>COURTIFY — 판결문 기사형 요약 앱</h4><p>Flutter–FastAPI–KoBART 파이프라인을 구현한 수업 프로젝트. 생성 결과에서 금액·이자율·판결 결론이 보존되는지를 별도 검증했습니다.</p></div>
+          <a class="row-action" href="https://github.com/B-Dandelion/COURTIFY" target="_blank" rel="noopener noreferrer">코드 보기 ↗</a>
+        </div>
+        <div class="project-row">
+          <span class="type">ADDITIONAL / AI</span>
+          <div><h4>DCC — 패션 이미지 분류</h4><p>ResNet 기반 패션 이미지 분류를 다룬 데이터·모델링 경험. 주력 앱·웹 프로젝트와 구분해 간략히 소개합니다.</p></div>
+          <span class="row-action" aria-label="저장소 링크 미등록">—</span>
         </div>
       </div>
     </section>
-
+    <section class="wrap">
+      <div class="note-box">
+        <div>
+          <span class="overline">DEVELOPMENT JOURNAL</span>
+          <h3>코드보다 오래 남는 것은<br>판단과 시행착오입니다.</h3>
+          <p>혼자 만든 앱을 실제로 운영하면서 바뀐 생각, 설계를 다시 고민했던 과정, 사용자에게서 배운 것들을 기록합니다.</p>
+        </div>
+        <div class="note-side">
+          <span class="mini-label">LATEST NOTE · 2026.10.20</span>
+          <a href="journal-2years.html">1인 앱 개발·출시 후, 2년간 운영하며 배운 것 ↗</a>
+          <small>서비스 운영 / 데이터베이스 / 개발 회고</small>
+          <div style="margin-top:20px"><a class="inline-link" href="writing.html" style="font-size:.78rem;display:inline-flex">글 목록 보기 →</a></div>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="wrap about-section" aria-labelledby="about-title">
+      <div>
+        <span class="mini-label">ABOUT</span>
+        <h2 id="about-title">기술보다 먼저,<br>사용자가 겪는 문제를 봅니다.</h2>
+        <p>앱과 웹을 개발하면서 요구사항 이해, 데이터 모델 설계, 화면 구현, 배포와 유지 보수까지 연결된 경험을 쌓았습니다. 특히 실제 운영 데이터를 바탕으로 문제를 재현하고 검증하는 일에 관심이 있습니다.</p>
+        <div class="about-links">
+          <a href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://velog.io/@b_dandelion/posts" target="_blank" rel="noopener noreferrer">Velog ↗</a>
+          <a href="mailto:jinbabging@gmail.com">Email ↗</a>
+        </div>
+      </div>
+      <div>
+        <span class="mini-label">SKILLS / PRACTICE</span>
+        <div class="skills">
+          <div><strong>Mobile</strong><span>Flutter, Dart, Android / iOS 배포, 사용자별 앱 흐름</span></div>
+          <div><strong>Web</strong><span>Next.js, React, TypeScript, Vercel</span></div>
+          <div><strong>Backend & Data</strong><span>Supabase, PostgreSQL, SQL, RLS / RPC, Firebase, FastAPI</span></div>
+          <div><strong>Infra & Workflow</strong><span>Cloudflare R2, Git / GitHub, 데이터 이관, 운영 점검</span></div>
+        </div>
+      </div>
+    </section>
   </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-900 bg-slate-950 py-12 text-center text-xs text-slate-500">
-    <div class="max-w-5xl mx-auto px-6 space-y-2">
-      <p>© 2026 Minkyung Jin. Crafted with precision & engineering care.</p>
-      <p class="font-mono text-slate-600">Built for production reliability.</p>
-    </div>
-  </footer>
-
-  <!-- Lucide Icon Renderer -->
-  <script>
-    lucide.createIcons();
-  </script>
+  <footer class="site-footer"><div class="wrap"><span>© 2026 Jin Minkyoung</span><span>Designed for clarity, built to be maintained.</span></div></footer>
 </body>
 </html>
