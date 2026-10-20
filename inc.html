@@ -10,12 +10,12 @@
 <p>흩어진 발간물, 세미나, 워크숍과 보고서 자료를 한곳에서 조회하고 관리할 수 있는 권한 기반 웹사이트를 1인 개발했습니다.</p>
 <div class="case-meta"><span><strong>역할</strong>웹 프론트엔드·서버 API·DB·배포 / 1인 개발</span><span><strong>기술</strong>Next.js, TypeScript, Supabase, R2</span><span><strong>운영</strong>Vercel · 2026.02 공개</span></div>
 <dl class="metric-grid" aria-label="프로젝트 규모">
-  <div><dt>자료 분류</dt><dd>11<small>개</small></dd><p>발간물·세미나·워크숍·보고서·공모전 등</p></div>
+  <div><dt>관리 중인 자료</dt><dd>679<small>건</small></dd><p>게시판 11개 · 2022–2026 발간</p></div>
+  <div><dt>행사 아카이브</dt><dd>11<small>건</small></dd><p>포스터·발표자료 등 연결 자료 157건</p></div>
   <div><dt>서버 API</dt><dd>23<small>개</small></dd><p>공개 조회 7개 · 관리자 16개</p></div>
-  <div><dt>화면</dt><dd>42<small>개</small></dd><p>자료실·행사·공지·회원·관리자</p></div>
   <div><dt>개발 기간</dt><dd>10<small>개월</small></dd><p>2025.11 — 2026.09 · 커밋 103회</p></div>
 </dl>
-<p class="metric-note">저장소 코드와 공개 사이트 기준. 공개 범위는 public / member / admin 3단계입니다.</p>
+<p class="metric-note">자료·행사 수는 2026.10.20 운영 DB 기준이며 삭제 처리한 자료는 제외했습니다. API·화면 수(42개)는 저장소 코드 기준입니다. 공개 범위는 public / member / admin 3단계입니다.</p>
 </header>
 <div class="wrap article-layout">
   <article class="article-content">
@@ -23,6 +23,8 @@
     <section id="structure"><h2>02. 메타데이터와 파일을 분리한 구조</h2><p>자료의 제목, 작성일, 게시판, 공개 범위는 PostgreSQL에서 관리하고 실제 문서·이미지·영상 파일은 Cloudflare R2에 저장했습니다. Next.js 서버 API에서 인증, 입력 검증, 공개 범위 판단과 업로드 흐름을 제어하도록 나누었습니다.</p>
       <div class="architecture"><div class="arch-row"><span class="node">Next.js</span><span class="arrow">→</span><span class="node ice">Supabase / Metadata</span><span class="arrow">+</span><span class="node">Cloudflare R2 / Files</span></div><p>자료 정보와 객체 저장을 분리해 검색·목록 조회와 실제 파일 제공의 책임을 구분했습니다.</p></div>
       <p>공개 범위를 public / member / admin으로 구분하고, 삭제 상태·검색어·카테고리·날짜 등을 조회 조건으로 반영했습니다.</p>
+      <div class="tech-facts" aria-label="파일 형식별 자료 수"><span><b>526</b>PDF</span><span><b>104</b>이미지</span><span><b>24</b>영상</span><span><b>16</b>문서</span><span><b>9</b>슬라이드</span></div>
+      <p>자료 삭제는 행을 지우지 않고 삭제 시각만 기록하는 방식으로 처리합니다. 목록과 검색에서는 빠지지만 기록은 남아, 지금까지 삭제한 37건도 언제 지웠는지 확인할 수 있습니다.</p>
     </section>
     <section id="tradeoffs"><h2>03. 정상 경로만 설계하지 않기</h2><h3>R2 업로드는 성공했지만 DB 저장이 실패한다면?</h3><p>서로 다른 저장소는 하나의 데이터베이스 트랜잭션으로 묶이지 않습니다. 파일 업로드만 성공하고 자료 메타데이터 저장이 실패하면 저장소에는 조회되지 않는 객체가 남을 수 있습니다.</p>
       <div class="step-list"><div class="step"><div><strong>R2에 파일 업로드</strong><p>자료의 실제 파일을 저장소에 기록합니다.</p></div></div><div class="step"><div><strong>DB에 자료 메타데이터 등록</strong><p>게시판·접근 범위·파일 키 등의 레코드를 저장합니다.</p></div></div><div class="step"><div><strong>DB 저장 실패 시 업로드 객체 삭제</strong><p>파일만 고립된 상태로 남지 않도록 보상 처리합니다.</p></div></div></div>
