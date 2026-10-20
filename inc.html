@@ -2,109 +2,57 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fafcfd" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#fcfdfd" />
     <meta
       name="description"
-      content="Next.js·TypeScript 기관 홈페이지. Supabase와 Cloudflare R2 연동, 관리자 기능, 자료 이관과 업로드 실패 처리 경험."
+      content="INC 웹사이트: Next.js, Supabase, Cloudflare R2를 활용한 기관 홈페이지 개발 프로젝트."
     />
-    <title>INC 홈페이지 | 진민경의 프로젝트</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <title>INC 홈페이지 — 프로젝트 사례 | 진민경</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈"
-          >minkyoung<span aria-hidden="true">.</span></a
-        >
-        <nav class="main-nav" aria-label="주요 메뉴">
-          <a href="./#work" class="active">Projects</a
-          ><a href="writing.html">Writing</a><a href="./#about">About</a>
+      <div class="wrap inner">
+        <a class="wordmark" href="./">minkyoung<b>.</b></a>
+        <nav class="main-nav" aria-label="메인 탐색">
+          <a href="./#work" aria-current="page">Projects</a
+          ><a href="writing.html">Writing</a><a href="./#about">About</a
+          ><a
+            class="nav-cta"
+            href="https://github.com/B-Dandelion"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub ↗</a
+          >
         </nav>
-        <a class="header-contact" href="mailto:jinbabging@gmail.com"
-          >이메일 <span aria-hidden="true">↗</span></a
-        >
       </div>
     </header>
     <main id="main" tabindex="-1">
       <header class="page-hero wrap">
-        <a class="backlink" href="./#work">← 프로젝트 목록</a>
-        <p class="eyebrow">CASE STUDY 02 / WEB SERVICE</p>
-        <h1>INC 홈페이지<span class="accent-dot">.</span></h1>
-        <p class="hero-subtitle">
-          자료를 찾는 화면부터,<br />관리하고 옮기는 과정까지.
+        <a class="backlink" href="./#work">← Selected work</a
+        ><span class="overline" style="display: block; margin-top: 37px"
+          >CASE STUDY / 02 — WEB · ARCHIVE</span
+        >
+        <h1>INC 홈페이지:<br />자료를 찾고 관리하는 구조를 만들다</h1>
+        <p>
+          흩어진 발간물, 세미나, 워크숍과 보고서 자료를 한곳에서 조회하고 관리할
+          수 있는 권한 기반 웹사이트를 1인 개발했습니다.
         </p>
-        <p class="hero-description">
-          기관 소개와 소식, 행사, 발간물·보고서 등을 제공하는 Next.js
-          홈페이지입니다. 공개 페이지와 관리자 기능, 파일 저장과 기존 자료
-          이관을 함께 구현했습니다.
-        </p>
-        <dl class="case-meta">
-          <div>
-            <dt>역할</dt>
-            <dd>요구사항 · 웹·서버 API · DB·권한 / 1인</dd>
-          </div>
-          <div>
-            <dt>운영 범위</dt>
-            <dd>자료 이관 · Vercel 배포</dd>
-          </div>
-          <div>
-            <dt>클라이언트·서버</dt>
-            <dd>Next.js App Router · TypeScript</dd>
-          </div>
-          <div>
-            <dt>데이터·파일</dt>
-            <dd>Supabase · Cloudflare R2</dd>
-          </div>
-        </dl>
-        <div class="hero-links">
-          <a
-            href="https://inc-kings.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >INC 홈페이지 방문 <span aria-hidden="true">↗</span></a
-          ><a
-            href="https://github.com/B-Dandelion/INC_Website"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub 코드 <span aria-hidden="true">↗</span></a
-          >
+        <div class="case-meta">
+          <span
+            ><strong>역할</strong>웹 프론트엔드·서버 API·DB·배포 / 1인
+            개발</span
+          ><span><strong>기술</strong>Next.js, TypeScript, Supabase, R2</span
+          ><span><strong>운영</strong>Vercel</span>
         </div>
       </header>
-      <section class="wrap case-brief" aria-label="프로젝트 핵심">
-        <div>
-          <span class="eyebrow">CONTEXT</span>
-          <p>흩어진 기관 자료의 조회와<br />관리자 직접 등록·수정 지원</p>
-        </div>
-        <div>
-          <span class="eyebrow">DECISION</span>
-          <p>
-            메타데이터와 파일 저장 분리,<br />권한과 실패 경로를 서버에서 처리
-          </p>
-        </div>
-        <div>
-          <span class="eyebrow">EXPERIENCE</span>
-          <p>화면 구현을 넘어<br />기존 자료 이관과 배포까지</p>
-        </div>
-      </section>
       <div class="wrap article-layout">
-        <nav class="article-aside" aria-label="이 페이지의 목차">
-          <span class="eyebrow">CONTENTS</span>
-          <ol>
-            <li><a href="#problem">왜 만들었나</a></li>
-            <li><a href="#product">기능과 담당 범위</a></li>
-            <li><a href="#structure">데이터와 파일 분리</a></li>
-            <li><a href="#tradeoffs">업로드 실패 처리</a></li>
-            <li><a href="#migration">기존 자료 이관</a></li>
-            <li><a href="#outcome">배포와 배운 점</a></li>
-          </ol>
-        </nav>
         <article class="article-content">
           <section id="problem">
-            <p class="section-number">01 / CONTEXT</p>
-            <h2>조회와 관리가 함께 필요한 홈페이지</h2>
+            <h2>01. 조회와 관리가 함께 필요한 홈페이지</h2>
             <p>
               기관의 발간물·세미나·워크숍·보고서가 여러 경로와 형식으로 존재하면
               이용자는 자료를 찾기 어렵고, 관리자는 공개 범위와 업로드 상태를
@@ -118,8 +66,7 @@
             </p>
           </section>
           <section id="product">
-            <p class="section-number">02 / PRODUCT & ROLE</p>
-            <h2>방문자의 탐색과 관리자의 작업을 연결</h2>
+            <h2>02. 방문자의 탐색과 관리자의 작업을 연결</h2>
             <dl class="role-list">
               <div>
                 <dt>공개 페이지</dt>
@@ -165,8 +112,7 @@
             </p>
           </section>
           <section id="structure">
-            <p class="section-number">03 / ARCHITECTURE</p>
-            <h2>찾기 위한 정보와 읽을 파일을 분리</h2>
+            <h2>03. 찾기 위한 정보와 읽을 파일을 분리</h2>
             <p>
               제목·게시판·게시일·공개 범위·파일 키는 관계형 데이터로 조회해야
               하지만, 문서·이미지·영상의 원본은 객체 저장소에 적합했습니다.
@@ -201,8 +147,7 @@
             </p>
           </section>
           <section id="tradeoffs">
-            <p class="section-number">04 / FAILURE HANDLING</p>
-            <h2>파일만 저장되고 DB 등록이 실패한다면?</h2>
+            <h2>04. 파일만 저장되고 DB 등록이 실패한다면?</h2>
             <p>
               R2 업로드와 DB INSERT는 하나의 DB 트랜잭션으로 묶을 수 없습니다.
               정상 흐름만 구현하면 메타데이터가 없는 파일이 저장소에 남을 수
@@ -247,8 +192,7 @@
             </p>
           </section>
           <section id="migration">
-            <p class="section-number">05 / DATA MIGRATION</p>
-            <h2>기존 자료도 새 구조 안으로</h2>
+            <h2>05. 기존 자료도 새 구조 안으로</h2>
             <p>
               신규 업로드 화면만으로는 기존 자료를 옮길 수 없었습니다. 로컬
               폴더의 파일을 순회하며 파일명과 경로에서 게시일·분류 정보를
@@ -272,8 +216,7 @@
             </p>
           </section>
           <section id="outcome">
-            <p class="section-number">06 / DELIVERY & LEARNING</p>
-            <h2>화면 바깥의 실패까지 설계하는 경험</h2>
+            <h2>06. 화면 바깥의 실패까지 설계하는 경험</h2>
             <p>
               Vercel에 배포한 홈페이지에서 공개 페이지와 관리자 기능을 함께
               운영할 수 있도록 구성했습니다. 이번 프로젝트에서는 UI 개발 외에도
@@ -290,6 +233,12 @@
             </div>
             <div class="case-links">
               <a
+                href="https://github.com/B-Dandelion/INC_Website"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub Repository ↗</a
+              >
+              <a
                 href="https://inc-kings.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -298,26 +247,19 @@
             </div>
           </section>
         </article>
+        <nav class="article-aside" aria-label="문서 목차">
+          <strong>ON THIS PAGE</strong><a href="#problem">01 / 왜 만들었나</a
+          ><a href="#product">02 / 기능과 담당 범위</a
+          ><a href="#structure">03 / 데이터와 파일 분리</a
+          ><a href="#tradeoffs">04 / 업로드 실패 처리</a
+          ><a href="#migration">05 / 기존 자료 이관</a
+          ><a href="#outcome">06 / 배포와 배운 점</a>
+        </nav>
       </div>
     </main>
     <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div>
-          <a class="wordmark" href="./"
-            >minkyoung<span aria-hidden="true">.</span></a
-          >
-          <p>앱과 웹을 만들고, 운영하며 배웁니다.</p>
-        </div>
-        <div class="footer-links">
-          <a
-            href="https://github.com/B-Dandelion"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub ↗</a
-          ><a href="mailto:jinbabging@gmail.com">Email ↗</a
-          ><a href="./">포트폴리오로 ↑</a>
-        </div>
-        <small>© 2026 Jin Minkyoung</small>
+      <div class="wrap">
+        <span>© 2026 Jin Minkyoung</span><a href="./">← Back to portfolio</a>
       </div>
     </footer>
   </body>

@@ -2,67 +2,58 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fafcfd" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#fcfdfd" />
     <meta
       name="description"
-      content="포레스트링을 약 2년간 운영하며 겪은 날짜 오류, 데이터베이스 이전, 사용자 요구와 서비스 설계에 관한 개발 회고."
+      content="1인 개발로 앱을 출시하고 2년간 운영하며 배운 시스템 설계, 데이터베이스 이관, 사용자 문제 이해에 관한 회고."
     />
     <title>1인 앱 개발·출시 후, 2년간 운영하며 배운 것 | 진민경</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈"
-          >minkyoung<span aria-hidden="true">.</span></a
-        >
-        <nav class="main-nav" aria-label="주요 메뉴">
+      <div class="wrap inner">
+        <a class="wordmark" href="./">minkyoung<b>.</b></a>
+        <nav class="main-nav" aria-label="메인 탐색">
           <a href="./#work">Projects</a
           ><a href="writing.html" aria-current="page">Writing</a
-          ><a href="./#about">About</a>
+          ><a href="./#about">About</a
+          ><a
+            class="nav-cta"
+            href="https://github.com/B-Dandelion"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub ↗</a
+          >
         </nav>
-        <a class="header-contact" href="mailto:jinbabging@gmail.com"
-          >이메일 <span aria-hidden="true">↗</span></a
-        >
       </div>
     </header>
-    <main id="main" tabindex="-1" class="journal-page">
+    <main id="main" tabindex="-1">
       <header class="page-hero wrap">
-        <a class="backlink" href="writing.html">← 개발 기록</a>
-        <p class="eyebrow">REFLECTION / 포레스트링</p>
-        <h1 class="journal-title">
-          1인 앱 개발·출시 후,<br />2년간 운영하며 배운 것
-        </h1>
-        <p class="hero-description">
-          처음에는 기능이 동작하면 개발이 끝났다고 생각했습니다.<br
-            class="desktop-break"
-          />
-          실제 사용자가 있는 앱을 계속 운영한 뒤, 그 생각은 달라졌습니다.
+        <a class="backlink" href="writing.html">← Writing</a
+        ><span class="overline" style="display: block; margin-top: 35px"
+          >REFLECTION · 2026.10.20 · 포레스트링</span
+        >
+        <h1>1인 앱 개발·출시 후,<br />2년간 운영하며 배운 것</h1>
+        <p>
+          처음에는 기능이 동작하면 개발이 끝났다고 생각했습니다. 실제 사용자가
+          있는 앱을 계속 운영한 뒤, 그 생각은 달라졌습니다.
         </p>
-        <div class="journal-byline">
-          <span>진민경</span><time datetime="2026-10-20">2026.10.20</time
-          ><span>1인 개발 · 데이터베이스 · 서비스 운영</span>
+        <div class="case-meta">
+          <span><strong>주제</strong>1인 개발 · 유지 보수 · 성장 회고</span
+          ><span><strong>프로젝트</strong>포레스트링</span
+          ><span><strong>읽을거리</strong>실서비스 운영 경험</span>
         </div>
       </header>
       <div class="wrap article-layout">
-        <nav class="article-aside" aria-label="이 페이지의 목차">
-          <span class="eyebrow">CONTENTS</span>
-          <ol>
-            <li><a href="#start">처음 시작할 때</a></li>
-            <li><a href="#operating">운영에서 드러난 문제</a></li>
-            <li><a href="#migration">구조를 바로잡는 것</a></li>
-            <li><a href="#users">사용자의 요청</a></li>
-            <li><a href="#solo">1인 개발의 의미</a></li>
-            <li><a href="#end">돌아보며</a></li>
-          </ol>
-        </nav>
-        <article class="article-content prose">
+        <article class="article-content">
           <p class="notice">
             이 글은
             <a
+              style="text-decoration: underline"
               href="https://velog.io/@b_dandelion/1인-앱-개발-출시-후-2년간-운영-후기"
               target="_blank"
               rel="noopener noreferrer"
@@ -228,26 +219,19 @@
             </div>
           </section>
         </article>
+        <nav class="article-aside" aria-label="문서 목차">
+          <strong>ON THIS PAGE</strong><a href="#start">처음 시작할 때</a
+          ><a href="#operating">운영에서 드러난 문제</a
+          ><a href="#migration">구조를 바로잡는 것</a
+          ><a href="#users">사용자의 문제</a><a href="#solo">1인 개발의 의미</a
+          ><a href="#end">돌아보며</a>
+        </nav>
       </div>
     </main>
     <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div>
-          <a class="wordmark" href="./"
-            >minkyoung<span aria-hidden="true">.</span></a
-          >
-          <p>앱과 웹을 만들고, 운영하며 배웁니다.</p>
-        </div>
-        <div class="footer-links">
-          <a
-            href="https://github.com/B-Dandelion"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub ↗</a
-          ><a href="mailto:jinbabging@gmail.com">Email ↗</a
-          ><a href="writing.html">개발 기록으로 ↑</a>
-        </div>
-        <small>© 2026 Jin Minkyoung</small>
+      <div class="wrap">
+        <span>© 2026 Jin Minkyoung</span
+        ><a href="writing.html">← More writing</a>
       </div>
     </footer>
   </body>

@@ -13,7 +13,7 @@ cd /path/to/portfolio
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-브라우저에서 로컬 서버를 열면 됩니다. 데이터베이스, API 키, 환경 변수는 필요하지 않습니다. 시스템 글꼴을 사용하므로 외부 폰트 요청도 없습니다.
+브라우저에서 로컬 서버를 열면 됩니다. 데이터베이스, API 키, 환경 변수는 필요하지 않습니다. 기존 공개 사이트와 같은 Google Fonts의 DM Sans·IBM Plex Sans KR을 사용합니다. 폰트를 불러오지 못할 경우 sans-serif로 표시합니다.
 
 ## 구조
 
@@ -48,24 +48,27 @@ python3 tools/check_browser.py --base-url http://127.0.0.1:8000/ \
   --axe-path /tmp/portfolio-audit/node_modules/axe-core/axe.min.js
 ```
 
+클라우드 Chromium이 외부 프록시 인증서를 신뢰하지 못할 때는 위 검사 명령에 `--system-font-trust`를 추가합니다. 이 옵션은 테스트 중 Google Fonts 두 호스트의 응답을 Python의 시스템 CA로 검증해 브라우저에 전달합니다. TLS 검증이나 사이트의 폰트 설정을 끄지 않으며, 원본 CSS·폰트 바이트를 그대로 사용합니다. 검사는 실제 DM Sans·IBM Plex Sans KR 로딩도 확인합니다.
+
 [검증 결과와 한계](docs/VALIDATION.md), [설명에 사용한 소스 근거](docs/CONTENT-SOURCES.md), [필요한 최신 화면 목록](docs/SCREENSHOTS.md)을 참고하세요.
 
 ## 개발 기록 추가
 
 1. `journal-2years.html`을 복사해 의미 있는 파일명으로 새 글을 만듭니다.
 2. 문서 제목·설명·`h1`·작성일·주제를 바꾸고, 본문 섹션마다 고유 `id`를 부여합니다.
-3. `.article-aside` 목차 링크를 새 섹션에 맞춥니다. 본문은 `.article-content.prose`를 유지합니다.
-4. `writing.html`의 `.journal-list`에 `.journal-entry`를 추가합니다. 발행일은 `<time datetime="YYYY-MM-DD">`로 작성합니다.
-5. 메인의 `.latest-note`도 최신 글로 갱신합니다. 링크 검사와 모바일 화면 검사를 실행합니다.
+3. `.article-aside` 목차 링크를 새 섹션에 맞춥니다. 본문은 `.article-content`를 유지합니다.
+4. `writing.html`의 `.journal-list`에 `.journal-item` 링크를 추가합니다. 발행일은 `<time datetime="YYYY-MM-DD">`로 작성합니다.
+5. 메인의 `.note-side`도 최신 글로 갱신합니다. 링크 검사와 모바일 화면 검사를 실행합니다.
 
 새 이미지는 의미 있는 파일명·대체 텍스트·고유 크기(`width`, `height`)를 지정하고 `<figure>`와 `<figcaption>`으로 설명 옆에 배치합니다. 본문 중간 이미지는 `loading="lazy"`를 사용합니다. 운영 앱 화면은 버전·촬영일과 개인정보 비식별화를 확인한 후 추가합니다.
 
 ## 디자인 기준
 
-- 회백색 `#FAFCFD`, 본문 `#20343D`, Ice Blue `#C7EEFA`, 링크 `#145E79`
-- 시스템 글꼴과 명확한 제목 위계, 본문 최대 700–720px
-- 주요 프로젝트는 역할·기능·판단·결과 순서로 설명하고, 작은 프로젝트는 행으로 표시
-- 키보드 포커스, 본문 건너뛰기, 모바일 목차, 감소된 모션 설정, 인쇄 스타일 지원
-- [Emil Kowalski](https://emilkowal.ski/)의 간결한 정보 구성, [Brittany Chiang](https://brittanychiang.com/)의 탐색 구조, [Lee Robinson](https://leerob.com/)의 글 중심 목록을 참고하되 레이아웃이나 자산을 복제하지 않음
+- 현재 공개 사이트의 구성·여백·제목 위계·글 목록을 기준으로 유지
+- 기존 서체 DM Sans / IBM Plex Sans KR, 배경 `#FCFDFD`, 본문 `#192E3B`, Ice Blue `#C7EEFA`
+- 메인 포레스트링·INC 홈페이지의 우측 도식을 제거하고, 프로젝트 설명을 읽기 편한 단일 열로 표시
+- 상세 페이지의 소스 근거·기술 설명은 유지하며 기존 헤더·목차·본문 스타일 적용
+- 글 목록은 기존 날짜 / 제목·설명 / 화살표 행 구조 유지
+- 본문 건너뛰기·키보드 포커스·모션 감소·인쇄 스타일 지원
 
 이 변경은 작업 브랜치와 PR로 검토합니다. 검토 전 `main` 병합이나 공개 사이트 배포를 실행하지 않습니다.

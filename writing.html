@@ -2,94 +2,71 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fafcfd" />
-    <meta
-      name="description"
-      content="앱·웹 서비스를 만들고 운영하며 내린 기술적 판단과 시행착오를 기록합니다."
-    />
-    <title>개발 기록 | 진민경</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#fcfdfd" />
+    <meta name="description" content="진민경의 개발 회고 및 기술 기록." />
+    <title>Writing | 진민경</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈"
-          >minkyoung<span aria-hidden="true">.</span></a
-        >
-        <nav class="main-nav" aria-label="주요 메뉴">
+      <div class="wrap inner">
+        <a class="wordmark" href="./">minkyoung<b>.</b></a>
+        <nav class="main-nav" aria-label="메인 탐색">
           <a href="./#work">Projects</a
           ><a href="writing.html" aria-current="page">Writing</a
-          ><a href="./#about">About</a>
-        </nav>
-        <a class="header-contact" href="mailto:jinbabging@gmail.com"
-          >이메일 <span aria-hidden="true">↗</span></a
-        >
-      </div>
-    </header>
-    <main id="main" tabindex="-1" class="wrap writing-page">
-      <header class="page-hero">
-        <a class="backlink" href="./">← 포트폴리오</a>
-        <p class="eyebrow">DEVELOPMENT NOTES</p>
-        <h1>개발 기록<span class="accent-dot">.</span></h1>
-        <p class="hero-description">
-          구현한 기능보다 오래 남는 판단과 시행착오.<br class="desktop-break" />
-          앱과 웹을 만들고 운영하며 배운 것을 기록합니다.
-        </p>
-      </header>
-      <section class="journal-list" aria-labelledby="notes-heading">
-        <div class="journal-list-heading">
-          <h2 id="notes-heading">모든 글</h2>
-          <span>서비스 운영 · 기술적 판단</span>
-        </div>
-        <article class="journal-entry">
-          <time datetime="2026-10-20">2026.10.20</time>
-          <div>
-            <p class="eyebrow">REFLECTION / 포레스트링</p>
-            <h2>
-              <a href="journal-2years.html"
-                >1인 앱 개발·출시 후,<br />2년간 운영하며 배운 것
-                <span aria-hidden="true">↗</span></a
-              >
-            </h2>
-            <p>
-              첫 출시부터 날짜 오류와 DB 이전, 사용자 요청을 다시 이해하기까지.
-              기능이 동작하는 앱에서 일관된 규칙을 지키는 서비스로 나아간
-              과정입니다.
-            </p>
-          </div>
-        </article>
-      </section>
-      <aside class="writing-note">
-        <p>포레스트링 운영 회고는 공개한 원문을 바탕으로 재구성한 글입니다.</p>
-        <a
-          href="https://velog.io/@b_dandelion/posts"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Velog의 다른 기록 ↗</a
-        >
-      </aside>
-    </main>
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div>
-          <a class="wordmark" href="./"
-            >minkyoung<span aria-hidden="true">.</span></a
-          >
-          <p>앱과 웹을 만들고, 운영하며 배웁니다.</p>
-        </div>
-        <div class="footer-links">
-          <a
+          ><a href="./#about">About</a
+          ><a
+            class="nav-cta"
             href="https://github.com/B-Dandelion"
             target="_blank"
             rel="noopener noreferrer"
             >GitHub ↗</a
-          ><a href="mailto:jinbabging@gmail.com">Email ↗</a
-          ><a href="./">포트폴리오로 ↑</a>
-        </div>
-        <small>© 2026 Jin Minkyoung</small>
+          >
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap" tabindex="-1">
+      <header class="page-hero">
+        <a class="backlink" href="./">← Portfolio</a
+        ><span class="overline" style="display: block; margin-top: 35px"
+          >DEVELOPMENT JOURNAL</span
+        >
+        <h1>Writing</h1>
+        <p>
+          배포 이후의 운영, 기술을 선택하며 했던 판단, 사용자에게서 배운 것들을
+          기록합니다.
+        </p>
+      </header>
+      <div class="journal-list">
+        <a href="journal-2years.html" class="journal-item"
+          ><time datetime="2026-10-20">2026.10.20</time>
+          <div>
+            <h2>1인 앱 개발·출시 후, 2년간 운영하며 배운 것</h2>
+            <p>
+              첫 앱 출시부터 반복된 오류, 데이터베이스 재설계, 실제 사용자의
+              문제를 이해하는 과정까지.
+            </p>
+          </div>
+          <span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <p class="notice">
+        현재는 한 편의 회고를 웹사이트용으로 재구성했습니다. 원문은
+        <a
+          href="https://velog.io/@b_dandelion/1인-앱-개발-출시-후-2년간-운영-후기"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="text-decoration: underline"
+          >Velog 게시글</a
+        >에서 볼 수 있습니다.
+      </p>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Jin Minkyoung</span><a href="./">← Back to portfolio</a>
       </div>
     </footer>
   </body>
