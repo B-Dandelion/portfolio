@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="ko">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfdfd"><meta name="description" content="INC 웹사이트: Next.js, Supabase, Cloudflare R2를 활용한 기관 홈페이지 개발 프로젝트."><title>INC 홈페이지 — 프로젝트 사례 | 진민경</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><meta property="og:type" content="article"><meta property="og:title" content="INC 홈페이지 — 자료를 찾고 관리하는 구조를 만들다"><meta property="og:description" content="Next.js, Supabase, Cloudflare R2로 1인 개발한 권한 기반 자료실 웹사이트."><meta property="og:image" content="https://b-dandelion.github.io/portfolio/assets/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="styles.css?v=20261020.4"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfdfd"><meta name="description" content="INC 웹사이트: Next.js, Supabase, Cloudflare R2로 1인 개발하고 운영하며 측정·개선한 기관 홈페이지 프로젝트."><title>INC 홈페이지 — 프로젝트 사례 | 진민경</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><meta property="og:type" content="article"><meta property="og:title" content="INC 홈페이지 — 운영 중인 서비스를 측정하고 고치다"><meta property="og:description" content="Next.js, Supabase, Cloudflare R2로 1인 개발·운영한 권한 기반 자료실 웹사이트."><meta property="og:image" content="https://b-dandelion.github.io/portfolio/assets/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="styles.css?v=20261022.1"></head>
 <body>
 <header class="site-header"><div class="wrap inner"><a class="wordmark" href="./">minkyoung<b>.</b></a><nav class="main-nav"><a href="./#work" aria-current="page">Projects</a><a href="writing.html">Writing</a><a href="./#about">About</a><a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
 <main>
 <header class="page-hero wrap">
-<a class="backlink" href="./#work">← Selected work</a><span class="overline" style="display:block;margin-top:37px">CASE STUDY / 02 — WEB · ARCHIVE</span>
-<h1>INC 홈페이지:<br>자료를 찾고 관리하는<br>구조를 만들다</h1>
-<p>흩어진 발간물, 세미나, 워크숍과 보고서 자료를 한곳에서 조회하고 관리할 수 있는 권한 기반 웹사이트를 1인 개발했습니다.</p>
+<a class="backlink" href="./#work">← Selected work</a><span class="overline" style="display:block;margin-top:37px">CASE STUDY / 02 — WEB · OPERATIONS</span>
+<h1>INC 홈페이지:<br>운영 중인 서비스를<br>측정하고 고치다</h1>
+<p>흩어진 발간물, 세미나, 워크숍과 보고서 자료를 한곳에서 조회하고 관리할 수 있는 권한 기반 웹사이트를 1인 개발했습니다. 공개 후에는 실제 이용 데이터와 측정값을 근거로 느린 원인과 잘못된 집계를 찾아 고쳤습니다.</p>
 <div class="case-meta"><span><strong>역할</strong>웹 프론트엔드·서버 API·DB·배포 / 1인 개발</span><span><strong>기술</strong>Next.js, TypeScript, Supabase, R2</span><span><strong>운영</strong>Vercel · 2026.02 공개</span></div>
 <dl class="metric-grid" aria-label="프로젝트 규모">
   <div><dt>관리 중인 자료</dt><dd>679<small>건</small></dd><p>게시판 11개 · 2022–2026 발간</p></div>
-  <div><dt>행사 아카이브</dt><dd>11<small>건</small></dd><p>포스터·발표자료 등 연결 자료 157건</p></div>
-  <div><dt>서버 API</dt><dd>23<small>개</small></dd><p>공개 조회 7개 · 관리자 16개</p></div>
-  <div><dt>개발 기간</dt><dd>10<small>개월</small></dd><p>2025.11 — 2026.09 · 커밋 103회</p></div>
+  <div><dt>간행물 웹페이지</dt><dd>433<small>호</small></dd><p>PDF로만 있던 ATM·Heartbeat를 읽을 수 있는 페이지로</p></div>
+  <div><dt>서버 API</dt><dd>27<small>개</small></dd><p>공개 8개 · 관리자 19개</p></div>
+  <div><dt>개발 기간</dt><dd>11<small>개월</small></dd><p>2025.11 — 2026.10 · 커밋 142회</p></div>
 </dl>
-<p class="metric-note">자료·행사 수는 2026.10.20 운영 DB 기준이며 삭제 처리한 자료는 제외했습니다. API·화면 수(42개)는 저장소 코드 기준입니다. 공개 범위는 public / member / admin 3단계입니다.</p>
+<p class="metric-note">자료 수는 2026.10.20 운영 DB 기준이며 삭제 처리한 자료는 제외했습니다. API·화면 수(44개)와 커밋 수는 2026.10.22 저장소 main 기준입니다. 공개 범위는 public / member / admin 3단계입니다.</p>
 </header>
 <div class="wrap article-layout">
   <article class="article-content">
@@ -24,17 +24,46 @@
       <div class="architecture"><div class="arch-row"><span class="node">Next.js</span><span class="arrow">→</span><span class="node ice">Supabase / Metadata</span><span class="arrow">+</span><span class="node">Cloudflare R2 / Files</span></div><p>자료 정보와 객체 저장을 분리해 검색·목록 조회와 실제 파일 제공의 책임을 구분했습니다.</p></div>
       <p>공개 범위를 public / member / admin으로 구분하고, 삭제 상태·검색어·카테고리·날짜 등을 조회 조건으로 반영했습니다.</p>
       <div class="tech-facts" aria-label="파일 형식별 자료 수"><span><b>526</b>PDF</span><span><b>104</b>이미지</span><span><b>24</b>영상</span><span><b>16</b>문서</span><span><b>9</b>슬라이드</span></div>
-      <p>자료 삭제는 행을 지우지 않고 삭제 시각만 기록하는 방식으로 처리합니다. 목록과 검색에서는 빠지지만 기록은 남아, 지금까지 삭제한 37건도 언제 지웠는지 확인할 수 있습니다.</p>
+      <p>자료 삭제는 행을 지우지 않고 삭제 시각만 기록하는 방식으로 처리합니다. 목록과 검색에서는 빠지지만 기록은 남아, 지금까지 삭제한 37건도 언제 지웠는지 확인할 수 있습니다. 관리자 화면의 삭제에 "되돌리기"를 붙일 수 있었던 것도 이 구조 덕분입니다.</p>
     </section>
     <section id="tradeoffs"><h2>03. 정상 경로만 설계하지 않기</h2><h3>R2 업로드는 성공했지만 DB 저장이 실패한다면?</h3><p>서로 다른 저장소는 하나의 데이터베이스 트랜잭션으로 묶이지 않습니다. 파일 업로드만 성공하고 자료 메타데이터 저장이 실패하면 저장소에는 조회되지 않는 객체가 남을 수 있습니다.</p>
-      <div class="step-list"><div class="step"><div><strong>R2에 파일 업로드</strong><p>자료의 실제 파일을 저장소에 기록합니다.</p></div></div><div class="step"><div><strong>DB에 자료 메타데이터 등록</strong><p>게시판·접근 범위·파일 키 등의 레코드를 저장합니다.</p></div></div><div class="step"><div><strong>DB 저장 실패 시 업로드 객체 삭제</strong><p>파일만 고립된 상태로 남지 않도록 보상 처리합니다.</p></div></div></div>
-      <p>이후 신규 콘텐츠만 고려하는 대신, 기존 자료를 새 분류와 날짜 기준에 맞춰 옮기기 위한 스크립트도 함께 만들었습니다. 재실행과 입력 검증을 고려해 관리 작업의 반복 부담을 줄이는 것이 목표였습니다.</p>
+      <p>처음에는 파일이 서버를 거쳐 R2로 갔는데, Vercel 함수는 요청 본문을 4.5MB까지만 받기 때문에 큰 PDF와 영상은 올릴 수 없었습니다. 그래서 브라우저가 서명된 주소(presigned URL)로 R2에 직접 올리고, 서버는 등록만 맡도록 흐름을 바꿨습니다.</p>
+      <div class="step-list"><div class="step"><div><strong>브라우저 → R2 직접 업로드</strong><p>서버는 파일 형식·크기·민감한 파일명을 검사한 뒤 업로드 주소만 발급합니다.</p></div></div><div class="step"><div><strong>파일이 실제로 있는지 확인 후 DB 등록</strong><p>클라이언트의 "업로드 완료"를 믿지 않고, 서버가 저장소에 객체가 있는지 직접 확인한 뒤 레코드를 만듭니다.</p></div></div><div class="step"><div><strong>DB 저장 실패 시 업로드 객체 삭제</strong><p>파일만 고립된 상태로 남지 않도록 보상 처리합니다.</p></div></div></div>
+      <h3>관리자는 개발자가 아니다</h3>
+      <p>실제 사용자는 자료를 올리는 기관 담당자입니다. 여러 파일을 한 번에 끌어다 놓으면 3개씩 동시에 올라가고, 파일마다 실제 진행률이 보이며, 실패한 파일만 다시 시도할 수 있게 했습니다. 행사 편집 화면은 공개 페이지와 같은 배치로 만들어, 결과물을 보면서 포스터·사진·자료를 끌어다 놓고 순서를 바꾸도록 했습니다.</p>
+      <p>자료 목록의 수정은 화면에 먼저 반영하고(낙관적 업데이트), 서버 저장이 실패하면 이전 상태로 되돌린 뒤 알려줍니다. 브라우저 기본 <code>prompt()</code> 창 세 개로 하던 편집은 목록 안에서 바로 고치는 폼으로 바꿨고, 삭제는 확인 창과 되돌리기를 거치게 했습니다.</p>
     </section>
-    <section id="outcome"><h2>04. 결과와 배운 점</h2><p>이번 프로젝트에서는 웹 UI를 만드는 일 외에도 자료 저장 위치, 접근 권한, 업로드 실패, 기존 데이터 이관이라는 운영 영역을 직접 다뤘습니다. 특히 하나의 요청이 여러 외부 서비스에 걸쳐 있을 때 각 단계의 실패 상태를 어떻게 처리할지 고민하는 경험이었습니다.</p>
+    <section id="performance"><h2>04. 느린 원인을 추측하지 않고 측정해서 찾기</h2><p>공개 후 "페이지가 느리다"는 같은 증상 뒤에 서로 다른 원인이 세 개 있었습니다. 각각 응답 시간을 재고, 원인을 확인한 뒤에만 고쳤습니다.</p>
+      <table class="compare"><thead><tr><th>증상</th><th>측정으로 찾은 원인</th><th>전</th><th>후</th></tr></thead><tbody>
+        <tr><td>홈 첫 응답</td><td>요청은 서울 리전으로 들어오는데 함수는 미국 동부에서 실행되어, 서울 DB를 매 쿼리마다 태평양 건너 조회. 실행 리전을 서울로 고정하고 홈의 세 섹션을 병렬로 조회</td><td>1.7–2.2초</td><td>0.08–0.11초</td></tr>
+        <tr><td>모든 페이지가 매번 DB 조회</td><td>루트 레이아웃이 언어 쿠키를 읽어 전 페이지가 동적 렌더링. 공개 조회 함수 13개를 캐시하고, 관리자가 수정한 테이블의 캐시만 태그로 즉시 만료</td><td colspan="2">수정은 바로 보이고 방문자는 캐시로 응답</td></tr>
+        <tr><td>Heartbeat 호 첫 열람</td><td>150–200쪽 PDF 전체에서 글을 추출. 칼럼과 목차가 있는 앞 12쪽만 읽고, 추출 결과는 관리자 수정과 무관한 별도 캐시에 보관, 업로드 직후 미리 생성</td><td>최대 7–8초</td><td>0.1–0.2초</td></tr>
+      </tbody></table>
+      <p class="image-policy">응답 시간은 운영 사이트에 직접 요청해 첫 바이트까지 걸린 시간(TTFB)입니다.</p>
+    </section>
+    <section id="browser"><h2>05. 브라우저와 React가 실제로 하는 일에서 생긴 버그</h2>
+      <h3>보이기만 해도 올라가던 조회수</h3>
+      <p>조회수 상위 12개가 모두 행사 사진이었습니다(최고 131회). 원인은 <code>&lt;img src&gt;</code>가 파일을 열 때 조회수를 올리는 주소를 그대로 쓰고 있던 것입니다. 브라우저는 이미지를 그리기 위해 그 주소를 요청하므로, 사람이 사진을 고르지 않아도 페이지가 열릴 때마다 조회와 다운로드가 기록되었습니다.</p>
+      <p>"화면에 표시하는 요청"과 "사용자가 연 요청"을 다른 주소로 나눴습니다. 표시용 주소는 집계를 하지 않고 이미지를 화면 크기에 맞게 줄여 CDN에 캐시하며, 조회는 사용자가 파일이나 간행물 페이지를 연 시점에만 기록하고, 간행물 페이지는 같은 브라우저의 30분 내 새로고침과 검색 로봇을 제외했습니다.</p>
+      <div class="tech-facts"><span><b>수 MB → 27KB</b>행사 사진 75장 평균 크기</span><span><b>0회</b>페이지 표시로 늘어난 조회수 (변경 후 검증)</span></div>
+      <h3>한 글자 입력할 때마다 목록 전체가 다시 만들어지던 화면</h3>
+      <p>1,390줄짜리 관리자 컴포넌트를 나누다가, 자료 행 컴포넌트가 부모 함수 안에 선언되어 있는 것을 발견했습니다. React는 렌더링마다 새로 만들어진 함수를 다른 컴포넌트로 보기 때문에, 입력창에 한 글자를 칠 때마다 등록된 자료 행이 전부 언마운트·마운트되고 있었습니다. 모듈 최상위로 옮겨 해결하고 컴포넌트는 896줄로 줄었습니다.</p>
+      <p>버튼 글자가 배경색에 묻히던 문제는 전역 CSS의 <code>a { color: inherit }</code>가 레이어 밖에 있어 Tailwind 유틸리티보다 우선하던 것이 원인이었습니다. <code>!important</code>로 덮지 않고 원인 규칙을 지웠습니다.</p>
+    </section>
+    <section id="verification"><h2>06. 고친 뒤 안 깨졌다는 것을 증명하기</h2><p>운영 중인 서비스라 "기존 기능을 줄이지 않는다"가 기본 조건이었습니다. 그래서 변경마다 무엇으로 확인할지를 먼저 정했습니다.</p>
+      <ul>
+        <li><strong>화면 공통화:</strong> 세미나·워크숍·보고회·공모전 5개 게시판을 하나의 컴포넌트 구조로 합친 뒤, 11개 행사 페이지 각각이 연결하는 파일 목록을 운영 사이트와 대조해 누락 0건과 유튜브 영상 11개 유지를 확인했습니다.</li>
+        <li><strong>PDF 글 추출:</strong> 2023–2026년 호를 기준으로 파서를 검증하고, 예상과 다른 레이아웃은 원문 텍스트로 대체해 빈 페이지가 나오지 않게 했습니다.</li>
+        <li><strong>코드 품질:</strong> ESLint 오류 68개(<code>any</code> 67개)와 경고 22개를 0으로 만들고, push와 PR마다 lint·타입 검사·빌드를 돌리는 CI를 붙였습니다.</li>
+        <li><strong>접근성:</strong> 공개 페이지의 낮은 글자 대비를 WCAG AA 기준으로 올렸습니다.</li>
+      </ul>
+    </section>
+    <section id="outcome"><h2>07. 결과와 배운 점</h2><p>웹 UI를 만드는 일 외에도 자료 저장 위치, 접근 권한, 업로드 실패, 기존 데이터 이관이라는 운영 영역을 직접 다뤘습니다. 공개 이후에는 PDF 안에만 있던 간행물 433호를 검색되는 웹페이지로 바꿔 사이트맵 주소를 21개에서 467개로 늘렸습니다.</p>
+      <div class="insight">가장 크게 배운 것은 고치기 전에 재는 습관입니다. 느린 페이지 세 곳은 원인이 모두 달랐고, 조회수 문제는 코드가 아니라 데이터의 이상한 분포에서 먼저 드러났습니다.</div>
       <div class="case-links"><a href="https://inc-kings.vercel.app/" target="_blank" rel="noopener noreferrer">서비스 방문 ↗</a><a href="https://github.com/B-Dandelion/INC_Website" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></div>
     </section>
   </article>
-  <aside class="article-aside" aria-label="문서 목차"><strong>ON THIS PAGE</strong><a href="#problem">01 / 프로젝트 배경</a><a href="#structure">02 / 데이터 구조</a><a href="#tradeoffs">03 / 실패 처리</a><a href="#outcome">04 / 결과</a></aside>
+  <aside class="article-aside" aria-label="문서 목차"><strong>ON THIS PAGE</strong><a href="#problem">01 / 프로젝트 배경</a><a href="#structure">02 / 데이터 구조</a><a href="#tradeoffs">03 / 실패 처리·업로드</a><a href="#performance">04 / 성능 측정</a><a href="#browser">05 / 브라우저·React</a><a href="#verification">06 / 검증</a><a href="#outcome">07 / 결과</a></aside>
 </div>
 </main>
 <footer class="site-footer"><div class="wrap"><span>© 2026 Jin Minkyoung</span><a href="./">← Back to portfolio</a></div></footer>
