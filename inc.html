@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfdfd"><meta name="description" content="INC 웹사이트: Next.js, Supabase, Cloudflare R2로 1인 개발하고 운영하며 측정·개선한 기관 홈페이지 프로젝트."><title>INC 홈페이지 — 프로젝트 사례 | 진민경</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><meta property="og:type" content="article"><meta property="og:title" content="INC 홈페이지 — 운영 중인 서비스를 측정하고 고치다"><meta property="og:description" content="Next.js, Supabase, Cloudflare R2로 1인 개발·운영한 권한 기반 자료실 웹사이트."><meta property="og:image" content="https://b-dandelion.github.io/portfolio/assets/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="styles.css?v=20261022.1"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfdfd"><meta name="description" content="INC 웹사이트: Next.js, Supabase, Cloudflare R2로 1인 개발하고 운영하며 측정·개선한 기관 홈페이지 프로젝트."><title>INC 홈페이지 — 프로젝트 사례 | 진민경</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><meta property="og:type" content="article"><meta property="og:title" content="INC 홈페이지 — 운영 중인 서비스를 측정하고 고치다"><meta property="og:description" content="Next.js, Supabase, Cloudflare R2로 1인 개발·운영한 권한 기반 자료실 웹사이트."><meta property="og:image" content="https://b-dandelion.github.io/portfolio/assets/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="styles.css?v=20261022.2"></head>
 <body>
 <header class="site-header"><div class="wrap inner"><a class="wordmark" href="./">minkyoung<b>.</b></a><nav class="main-nav"><a href="./#work" aria-current="page">Projects</a><a href="writing.html">Writing</a><a href="./#about">About</a><a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
 <main>
@@ -57,8 +57,16 @@
         <li><strong>코드 품질:</strong> ESLint 오류 68개(<code>any</code> 67개)와 경고 22개를 0으로 만들고, push와 PR마다 lint·타입 검사·빌드를 돌리는 CI를 붙였습니다.</li>
         <li><strong>접근성:</strong> 공개 페이지의 낮은 글자 대비를 WCAG AA 기준으로 올렸습니다.</li>
       </ul>
+      <div class="shot-pair">
+        <figure><img src="assets/inc/event-shortform.webp" width="2560" height="1720" alt="숏폼영상 공모전 페이지: 왼쪽 행사 목록, 상단 섹션 탭, 수상자 사진·등급·작품 제목과 영상 썸네일 카드" loading="lazy"><figcaption>공통 컴포넌트로 합친 행사 페이지 (데스크톱)</figcaption></figure>
+        <figure><img src="assets/inc/event-mobile.webp" width="780" height="1688" alt="에세이 경진대회 수상자 목록의 휴대폰 화면" loading="lazy"><figcaption>같은 구조의 휴대폰 화면</figcaption></figure>
+      </div>
     </section>
     <section id="outcome"><h2>07. 결과와 배운 점</h2><p>웹 UI를 만드는 일 외에도 자료 저장 위치, 접근 권한, 업로드 실패, 기존 데이터 이관이라는 운영 영역을 직접 다뤘습니다. 공개 이후에는 PDF 안에만 있던 간행물 433호를 검색되는 웹페이지로 바꿔 사이트맵 주소를 21개에서 467개로 늘렸습니다.</p>
+      <div class="shot-pair">
+        <figure><img src="assets/inc/issue-atm.webp" width="2560" height="1720" alt="ATM 339호 페이지: 뉴스 요약 세 건이 원문 기사 링크와 함께 웹페이지로 표시된 화면" loading="lazy"><figcaption>PDF에서 추출해 만든 ATM 호 페이지</figcaption></figure>
+        <figure><img src="assets/inc/issue-mobile.webp" width="780" height="1688" alt="같은 ATM 호 페이지의 휴대폰 화면" loading="lazy"><figcaption>휴대폰에서도 PDF 없이 읽기</figcaption></figure>
+      </div>
       <div class="insight">가장 크게 배운 것은 고치기 전에 재는 습관입니다. 느린 페이지 세 곳은 원인이 모두 달랐고, 조회수 문제는 코드가 아니라 데이터의 이상한 분포에서 먼저 드러났습니다.</div>
       <div class="case-links"><a href="https://inc-kings.vercel.app/" target="_blank" rel="noopener noreferrer">서비스 방문 ↗</a><a href="https://github.com/B-Dandelion/INC_Website" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></div>
     </section>
