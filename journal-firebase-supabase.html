@@ -5,8 +5,8 @@
 <meta name="description" content="개발 편의성으로 시작한 Firestore에서 관계형 데이터의 무결성을 고민하게 됐습니다. 실제 예약 시스템을 운영하며 PostgreSQL을 선택한 기술적 이유를 정리했습니다."><title>Firebase에서 Supabase로, 운영 중인 예약 앱의 데이터베이스를 옮긴 이유 | 진민경</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><meta property="og:type" content="article"><meta property="og:title" content="Firebase에서 Supabase로, 운영 중인 예약 앱의 데이터베이스를 옮긴 이유">
 <meta property="og:description" content="개발 편의성으로 시작한 Firestore에서 관계형 데이터의 무결성을 고민하게 됐습니다. 실제 예약 시스템을 운영하며 PostgreSQL을 선택한 기술적 이유를 정리했습니다."><meta property="og:image" content="https://b-dandelion.github.io/portfolio/assets/og.png">
-<link rel="stylesheet" href="styles.css?v=20261022.4"><link rel="stylesheet" href="assets/journal-widgets.css?v=20261105.1">
-<script defer src="assets/journal-widgets.js?v=20261105.1"></script>
+<link rel="stylesheet" href="styles.css?v=20261022.4"><link rel="stylesheet" href="assets/journal-widgets.css?v=20261105.2">
+<script defer src="assets/journal-widgets.js?v=20261105.2"></script>
 </head>
 <body>
 <header class="site-header"><div class="wrap inner"><a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈">minkyoung<b>.</b></a><nav class="main-nav" aria-label="메인 탐색"><a href="./#work">Projects</a><a href="writing.html" aria-current="page">Writing</a><a href="./#about">About</a><a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
@@ -26,6 +26,19 @@
 <section id="complexity">
 <h2>수업 취소가 단순한 상태 변경이 아니었던 이유</h2>
 <p>수강생이 수업을 취소하면 수업의 상태뿐 아니라 취소 가능한 횟수, 반환할 수강권, 수강권의 이월 여부, 담당 선생님과 과거 이력까지 확인해야 합니다. 이미 사용한 수강권을 다시 쓸 수 없도록 보장하는 일도 필요했습니다.</p>
+
+<figure class="jd" aria-labelledby="jd-cancel-title">
+  <figcaption class="jd-caption"><span class="jd-index">MODEL / 01</span><strong id="jd-cancel-title">취소 요청 하나에 연결되는 데이터</strong></figcaption>
+  <div class="jd-focus"><span class="jd-focus-top">Flutter · cancel_lesson 요청</span><strong>수업 취소</strong><span>권한·상태·수강권 정합성 확인</span></div>
+  <div class="jd-fork" aria-hidden="true">↓</div>
+  <div class="jd-cards jd-cards-two">
+    <div class="jd-card"><code>lessons</code><span>수업 상태</span><small>scheduled → canceled</small></div>
+    <div class="jd-card"><code>lesson_rights</code><span>같은 수강권 복원</span><small>reserved → available</small></div>
+    <div class="jd-card"><code>lesson_cancellation_events</code><span>취소 횟수·사유 이력</span><small>중복 집계 방지</small></div>
+    <div class="jd-card"><code>audit_events</code><span>누가 언제 변경했는지</span><small>변경 내용 기록</small></div>
+  </div>
+  <p class="jd-footnote">포레스트링의 이관 후 수업 취소 처리에 등장하는 주요 데이터입니다. 항목별 변경은 검증에 통과한 경우에만 실행됩니다.</p>
+</figure>
 <p>초기 구조에서는 <code>isRescheduled</code>, <code>isActive</code> 같은 Boolean 필드로 상태를 표현하다가 기능이 늘어나며 <code>status</code>를 추가했습니다. 문제는 필드 하나를 늘릴 때마다 그 값을 참조하는 예약·취소·보강·조회 코드를 모두 점검해야 했다는 점입니다. 수정하지 못한 경로가 남으면 같은 수업을 서로 다른 상태로 판단할 수도 있었습니다.</p>
 <div class="journal-callout"><strong>개선할 대상은 특정 필드가 아니라 데이터 관계를 관리하는 방식이었습니다.</strong><p>서비스가 커질수록 데이터의 유효한 상태를 어디에서, 어떻게 보장할지 중요해졌습니다.</p></div>
 </section>
@@ -34,20 +47,19 @@
 <p>Cloud Firestore Standard는 컬렉션과 문서를 중심으로 데이터를 저장합니다. 조회 패턴에 맞춰 정보를 한 문서에 모으거나 필요한 데이터를 중복 저장할 수 있습니다. 반면 PostgreSQL은 테이블을 관계로 연결하고 외래 키, 제약 조건, SQL JOIN으로 데이터를 다룰 수 있습니다.</p>
 <p>Firestore에서도 복잡한 예약 시스템을 만들 수 있습니다. 다만 관계형 JOIN이나 외래 키 제약을 그대로 제공하지 않는 Firestore Standard에서는 관련 문서를 조회하고 검증하는 책임을 별도 로직에 두어야 합니다. 아래는 그 구조적 차이를 단순화한 예시입니다.</p>
 
-<section class="jw" data-journal-widget="flow" aria-label="문서형 데이터베이스와 관계형 데이터베이스의 조회 흐름 비교">
-  <div class="jw-head"><span class="jw-kicker">INTERACTIVE / QUERY MODEL</span><h3>같은 질문, 서로 다른 조회 방식</h3>
-  <p>아래 질문을 선택하면 Firestore Standard와 PostgreSQL에서 데이터를 연결하는 흐름이 바뀝니다.</p></div>
-  <div class="jw-toolbar" role="group" aria-label="조회할 데이터">
-    <button type="button" class="jw-option" data-flow-case="student" aria-pressed="true">학생의 수업 조회</button>
-    <button type="button" class="jw-option" data-flow-case="right" aria-pressed="false">수업·수강권 이력 함께 조회</button>
+
+<figure class="jd" aria-labelledby="jd-db-title">
+  <figcaption class="jd-caption"><span class="jd-index">DATA MODEL / 02</span><strong id="jd-db-title">학생의 수업과 수강권을 함께 확인할 때</strong></figcaption>
+  <div class="jd-split">
+    <div class="jd-lane"><div class="jd-lane-top"><strong>Firestore Standard</strong><span>문서 참조를 조합</span></div>
+      <div class="jd-vertical"><div class="jd-block"><code>학생 문서</code><span>학생 식별자</span></div><span aria-hidden="true" class="jd-arrow">↓</span><div class="jd-block"><code>관련 수업 문서</code><span>studentId 조건 조회</span></div><span aria-hidden="true" class="jd-arrow">↓</span><div class="jd-block"><code>수강권 관련 문서</code><span>추가 조회·코드에서 조합</span></div></div>
+    </div>
+    <div class="jd-lane"><div class="jd-lane-top"><strong>PostgreSQL</strong><span>명시적 관계로 연결</span></div>
+      <div class="jd-vertical"><div class="jd-block jd-db-block"><code>students</code><span>PK · id</span></div><span aria-hidden="true" class="jd-arrow">↓ FK</span><div class="jd-block jd-db-block"><code>lessons</code><span>student_id · lesson_right_id</span></div><span aria-hidden="true" class="jd-arrow">↓ FK</span><div class="jd-block jd-db-block"><code>lesson_rights</code><span>PK · id</span></div></div>
+    </div>
   </div>
-  <div class="jw-compare">
-    <div class="jw-panel"><div class="jw-panel-head"><strong>Firestore Standard</strong><small>문서 조회 → 응용 계층에서 조합</small></div><ol class="jw-steps" data-flow-docs></ol></div>
-    <div class="jw-panel"><div class="jw-panel-head"><strong>PostgreSQL</strong><small>관계를 이용한 SQL 조회</small></div><pre class="jw-code"><code data-flow-sql></code></pre></div>
-  </div>
-  <p class="jw-output" aria-live="polite" data-flow-out></p>
-  <p class="jw-foot">개념을 설명하는 가상 예시입니다. Firestore에서도 데이터 중복 저장, 인덱스, 서버 측 함수 등을 이용해 조회를 최적화할 수 있으며, 위 그림은 실제 요청 횟수나 성능 비교를 뜻하지 않습니다.</p>
-</section>
+  <p class="jd-footnote">Firestore 쪽 문서 구조는 비교용 개념 예시입니다. PostgreSQL 쪽은 포레스트링에서 사용하는 테이블 관계를 단순화했습니다. 어느 쪽이 더 빠르다는 성능 비교는 아닙니다.</p>
+</figure>
 <p>중요한 것은 어느 모델이 무조건 빠르다는 뜻이 아닙니다. 자주 수행하는 조회와 변경, 반드시 유지해야 하는 관계가 무엇인지에 따라 설계와 유지보수 비용이 달라집니다.</p>
 </section>
 <section id="server">
@@ -63,6 +75,27 @@ await supabase.rpc(
     'p_reason': reason,
   },
 );</code></pre>
+<section class="jw jw-case" data-journal-widget="cancellation" aria-label="포레스트링 수업 취소 처리 시뮬레이터">
+ <div class="jw-head"><span class="jw-kicker">INTERACTIVE / BUSINESS RULE</span><h3>수업 취소 요청을 처리해 보기</h3>
+ <p>실제 <code>cancel_lesson</code> RPC의 주요 검사와 변경을 단순화한 사례입니다. 사례를 선택하고 단계별로 처리해 보세요.</p></div>
+ <div class="jw-toolbar" role="group" aria-label="취소 요청 조건 선택">
+  <button type="button" data-cancel-scenario="valid" aria-pressed="true">정상 수업</button>
+  <button type="button" data-cancel-scenario="already" aria-pressed="false">이미 취소한 수업</button>
+  <button type="button" data-cancel-scenario="mismatch" aria-pressed="false">수강권 학생 불일치</button>
+ </div>
+ <div class="jw-stategrid" aria-live="polite">
+   <div><span>lessons.status</span><strong data-cancel-lesson>scheduled</strong></div>
+   <div><span>lesson_rights.status</span><strong data-cancel-right>reserved</strong></div>
+   <div><span>처리 결과</span><strong data-cancel-state>요청 전</strong></div>
+ </div>
+ <div class="jw-compare">
+   <div class="jw-panel"><div class="jw-panel-head"><strong>이전 · 문서 기반 처리</strong><small>클라이언트 중심으로 구현했던 접근을 개념화</small></div><ol class="jw-steps" data-cancel-before></ol></div>
+   <div class="jw-panel"><div class="jw-panel-head"><strong>이관 후 · PostgreSQL RPC</strong><small>cancel_lesson의 검증·변경 책임</small></div><ol class="jw-steps" data-cancel-after></ol></div>
+ </div>
+ <div class="jw-toolbar"><button type="button" class="jw-action" data-cancel-next>다음 단계 실행</button><button type="button" class="jw-action jw-secondary" data-cancel-reset>다시 시작</button><span class="jw-progress" data-cancel-progress>0 / 4</span></div>
+ <div class="jw-report" aria-live="polite" data-cancel-report>요청을 실행하면 검증 결과에 따라 수업과 수강권의 상태가 달라집니다.</div>
+ <p class="jw-foot">설명용 가상 데이터이며 실제 운영 DB에 접근하지 않습니다. Firestore도 Transaction과 Callable Cloud Functions로 원자적 처리가 가능합니다. 여기서 비교하는 것은 <strong>검증 책임의 위치와 관계를 다루는 방식</strong>입니다.</p>
+</section>
 <p>Firestore 이벤트 기반 Cloud Functions는 원본 데이터 변경 이후 비동기로 실행되며 중복 전달 및 순서 문제를 고려해야 합니다. 반면 PostgreSQL의 일반적인 데이터 변경 트리거는 해당 변경과 동일한 트랜잭션에서 실행됩니다. 그렇다고 모든 처리를 트리거에 넣은 것은 아닙니다. 명시적인 업무 처리는 DB 함수, 데이터 변경에 필수적으로 수반되는 검증은 제약과 필요한 트리거로 구분했습니다.</p>
 </section>
 <section id="constraints">
@@ -84,6 +117,18 @@ await supabase.rpc(
 <section id="outcome">
 <h2>이관 후 달라진 책임의 경계</h2>
 <p>이전에는 Flutter에서 여러 문서를 조회하고 규칙을 계산한 뒤 변경 사항을 쓰는 흐름이 많았습니다. 새로운 구조에서는 화면과 사용자 상호작용은 Flutter가 맡고, 데이터 정합성이 중요한 변경은 PostgreSQL의 함수·제약·트랜잭션에 더 많이 맡겼습니다.</p>
+
+<figure class="jd" aria-labelledby="jd-owner-title">
+ <figcaption class="jd-caption"><span class="jd-index">ARCHITECTURE / 03</span><strong id="jd-owner-title">데이터 변경을 판단하는 위치가 달라졌다</strong></figcaption>
+ <div class="jd-split jd-ownership">
+  <div class="jd-lane"><div class="jd-lane-top"><strong>이전 구조</strong><span>클라이언트 로직 비중이 큼</span></div>
+    <ol class="jd-chain"><li><strong>Flutter</strong><small>예약·취소 화면</small></li><li><strong>여러 문서 조회</strong><small>수업·학생·관련 기록</small></li><li><strong>앱에서 규칙 계산</strong><small>변경 경로에 로직 분산</small></li><li><strong>Firestore 변경</strong><small>필요 시 트랜잭션 활용</small></li></ol>
+    <p class="jd-lane-note">기존에도 일부 자동화는 Cloud Functions를 사용했습니다.</p></div>
+  <div class="jd-lane"><div class="jd-lane-top"><strong>이관 후 구조</strong><span>DB 함수 중심으로 규칙 집중</span></div>
+    <ol class="jd-chain jd-chain-new"><li><strong>Flutter</strong><small>취소 요청·결과 표시</small></li><li><strong>RPC · cancel_lesson</strong><small>서버 측 처리 호출</small></li><li><strong>PostgreSQL 검증</strong><small>권한·행 잠금·업무 규칙</small></li><li><strong>동일 트랜잭션에서 반영</strong><small>수업·수강권·이력 변경</small></li></ol>
+  </div>
+ </div>
+</figure>
 <p>덕분에 서버에 정의한 업무 규칙을 변경할 때, 기존 RPC 계약이 유지된다면 앱을 다시 배포하지 않고도 수정 사항을 적용할 수 있게 됐습니다. 물론 함수의 호출 형식이 바뀌거나 화면 변경이 필요한 경우에는 하위 호환성과 앱 업데이트가 여전히 필요합니다.</p>
 <p>결국 이전의 핵심은 Firebase에서 불가능했던 기능을 얻는 일이 아니었습니다. <strong>서비스의 관계형 데이터와 변경 규칙을 보다 명시적이고 일관된 구조에서 관리하는 것</strong>이었습니다.</p>
 <div class="case-links"><a href="journal-data-migration.html">다음 글: 실제 데이터 이관과 검증 과정 ↗</a><a href="https://velog.io/@b_dandelion/Firebase에서-Supabase로-운영-중인-예약-앱의-데이터베이스를-옮긴-이유" target="_blank" rel="noopener noreferrer">Velog 전체 글 ↗</a></div>
