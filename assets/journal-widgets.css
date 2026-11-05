@@ -1,0 +1,47 @@
+
+/* Portfolio journal interactions — inherit the site's existing type and blue palette */
+.jw{margin:36px 0 42px;background:var(--surface);border:1px solid var(--line);padding:26px;color:var(--ink);line-height:1.65}
+.jw-head .jw-kicker{font-size:.68rem;letter-spacing:.12em;color:var(--blue);font-weight:700}
+.article-content .jw-head h3{font-size:1.3rem;margin:9px 0 9px;letter-spacing:-.03em}
+.article-content .jw-head p{font-size:.84rem;line-height:1.75;margin:0 0 18px;color:var(--muted)}
+.jw-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.jw button{border:1px solid #aacbd9;background:#fff;color:#365565;padding:9px 14px;cursor:pointer;font-size:.8rem;font-weight:600;border-radius:2px;transition:background-color .15s,border-color .15s}
+.jw button[aria-pressed="true"],.jw button.jw-action:not(.jw-secondary){background:var(--blue);border-color:var(--blue);color:#fff}
+.jw button:not(:disabled):hover{border-color:var(--blue);background:#e5f4fa;color:var(--ink)}
+.jw button.jw-action:not(.jw-secondary):hover{background:#0f5578;color:#fff}
+.jw button:focus-visible{outline:3px solid #8ad6f1;outline-offset:3px}
+.jw button:disabled{cursor:not-allowed;opacity:.48}
+.jw-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}
+.jw-panel{border:1px solid var(--line);background:#fff;min-width:0}
+.jw-panel-head{padding:14px 15px;background:#f3f9fc;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.jw-panel-head strong{font-size:.9rem;color:var(--ink)}
+.jw-panel-head small{font-size:.71rem;color:var(--muted);line-height:1.55}
+.jw-steps{list-style:none;counter-reset:flow;padding:15px 15px 5px;margin:0}
+.jw-steps li{counter-increment:flow;display:grid;grid-template-columns:25px 1fr;gap:9px;margin:0 0 14px;font-size:.77rem;line-height:1.6;word-break:break-all}
+.jw-steps li::before{content:counter(flow,decimal-leading-zero);font-size:.67rem;color:var(--blue);font-weight:700;margin-top:2px}
+.jw-code{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.74rem;line-height:1.7;color:#254554;padding:17px 14px;margin:0;background:#fff;overflow-x:auto;min-height:175px}
+.article-content .jw-code code{background:none;padding:0;border:0;font-size:inherit}
+.jw-output{margin:16px 0 0!important;padding:12px 15px;border-left:2px solid var(--blue);background:#e9f5fa;color:#295569;font-size:.81rem!important;line-height:1.65!important}
+.jw-foot{margin:16px 0 0!important;font-size:.73rem!important;line-height:1.72!important;color:var(--muted)!important}
+.jw-table-wrap{overflow:auto}
+.jw-table{border-collapse:collapse;width:100%;font-size:.76rem;white-space:nowrap}
+.jw-table th,.jw-table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+.jw-table th{color:var(--muted);font-weight:600;background:#fbfdfd}
+.jw-table td:first-child,.jw-table th:first-child{padding-left:12px}
+.jw-table td:last-child,.jw-table th:last-child{padding-right:12px}
+.jw .jw-bad{background:#fff1e8;color:#96512e;font-weight:700}
+.jw .jw-fixed{background:#e5f5ec;color:#205a43;font-weight:700}
+.jw-mapping{font-size:.76rem!important;color:var(--muted)!important;margin:16px 0 8px!important}
+.article-content .jw-mapping code{font-size:.8em}
+.jw-report{border-left:2px solid var(--blue);background:#e9f5fa;padding:13px 15px;font-size:.81rem;white-space:pre-line;line-height:1.7;color:#294e61;min-height:48px}
+.jw-report[data-result="error"]{border-color:#b66c47;background:#fff5ef;color:#77412d}
+.jw-report[data-result="ok"]{border-color:#37805c;background:#ebf7f0;color:#205a43}
+.article-content .journal-excerpt{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:.86rem}
+.article-content .journal-excerpt a{color:var(--blue);border-bottom:1px solid var(--blue)}
+.article-content .journal-callout{border-left:3px solid var(--blue);background:#f0f8fc;padding:18px 23px;margin:28px 0 32px;color:#355466}
+.article-content .journal-callout p:last-child{margin-bottom:0}
+.article-content .journal-note{font-size:.8rem;color:var(--muted)}
+.article-content .journal-list-tight{padding-left:1.35em;line-height:1.85}
+.article-content .journal-list-tight li{margin-bottom:9px}
+@media(max-width:690px){.jw{padding:17px 13px;margin:28px 0 34px}.jw-compare{grid-template-columns:1fr;gap:10px}.jw-code{min-height:0}.jw button{padding:10px 12px}.jw-table{font-size:.74rem}}
+@media(prefers-reduced-motion:reduce){.jw button{transition:none}}

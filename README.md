@@ -13,12 +13,15 @@
 | `inc.html` | INC 홈페이지 케이스 스터디. 권한 기반 자료실 웹사이트(Next.js · R2) |
 | `journal-2years.html` | 1인 앱 개발·출시 후 2년간 운영 회고 |
 | `writing.html` | 개발 기록 목록 |
+| `journal-firebase-supabase.html` | Firestore에서 PostgreSQL로 이관한 기술적 이유 · 조회 방식 비교 위젯 |
+| `journal-data-migration.html` | 실제 데이터 마이그레이션과 검증 과정 · 정합성 검사 위젯 |
 
 ## 구조
 
 ```text
 .
 ├─ index.html, forestring.html, inc.html, journal-2years.html, writing.html
+├─ journal-firebase-supabase.html, journal-data-migration.html
 ├─ styles.css            # 모든 페이지가 함께 쓰는 스타일
 ├─ favicon.svg
 └─ assets/
