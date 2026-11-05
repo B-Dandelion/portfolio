@@ -11,12 +11,12 @@
 <body>
 <header class="site-header"><div class="wrap inner"><a class="wordmark" href="./" aria-label="진민경 포트폴리오 홈">minkyoung<b>.</b></a><nav class="main-nav" aria-label="메인 탐색"><a href="./#work">Projects</a><a href="writing.html" aria-current="page">Writing</a><a href="./#about">About</a><a class="nav-cta" href="https://github.com/B-Dandelion" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
 <main>
-<header class="page-hero wrap"><a class="backlink" href="writing.html">← Writing</a><span class="overline" style="display:block;margin-top:35px">ENGINEERING NOTE 03 · 2026.11 · 포레스트링</span><h1>운영 중인 데이터를<br>이관하고 검증한 과정</h1><p>운영 중인 Firestore 데이터를 PostgreSQL로 이전하며 스키마를 재설계하고, 식별자·수강권·시간대·구버전 앱의 변경까지 검증했던 과정을 정리했습니다.</p>
-<div class="case-meta"><span><strong>주제</strong>데이터 모델 · 서비스 운영</span><span><strong>프로젝트</strong><a href="forestring.html">포레스트링</a></span><span><strong>전체 글</strong><a href="https://velog.io/@b_dandelion/Firebase에서-Supabase로-운영-중인-데이터를-이관하고-검증한-과정" target="_blank" rel="noopener noreferrer">Velog 원문 ↗</a></span></div>
+<header class="page-hero wrap"><a class="backlink" href="writing.html">← Writing</a><span class="overline" style="display:block;margin-top:35px">TECHNICAL NOTE · 2026.11.04 · 포레스트링</span><h1>Firebase에서 Supabase로,<br>운영 중인 데이터를<br>이관하고 검증한 과정</h1><p>운영 중인 Firestore 데이터를 PostgreSQL로 이전하며 스키마를 재설계하고, 식별자·수강권·시간대·구버전 앱의 변경까지 검증했던 과정을 정리했습니다.</p>
+<div class="case-meta"><span><strong>주제</strong>데이터 이관 · 정합성 검증 · 서비스 운영</span><span><strong>프로젝트</strong>포레스트링</span><span><strong>원문</strong><a href="https://velog.io/@b_dandelion/Firebase에서-Supabase로-운영-중인-데이터를-이관하고-검증한-과정" target="_blank" rel="noopener noreferrer">Velog</a></span></div>
 </header>
 <div class="wrap article-layout">
 <article class="article-content">
-<p class="notice">Velog에 게시한 개발 기록을 포트폴리오에 맞게 재구성했습니다. 핵심 설계 판단과 사례를 소개하며, 세부 과정은 <a href="https://velog.io/@b_dandelion/Firebase에서-Supabase로-운영-중인-데이터를-이관하고-검증한-과정" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">원문</a>에서 확인할 수 있습니다.</p>
+<p class="notice">이 글은 <a style="text-decoration:underline" href="https://velog.io/@b_dandelion/Firebase에서-Supabase로-운영-중인-데이터를-이관하고-검증한-과정" target="_blank" rel="noopener noreferrer">Velog에 공개한 개발 기록</a>과 작성 원고를 바탕으로 포트폴리오 웹사이트에 맞게 재구성한 버전입니다.</p>
 
 <section id="purpose">
 <h2>운영 데이터는 단순한 파일이 아니다</h2>
